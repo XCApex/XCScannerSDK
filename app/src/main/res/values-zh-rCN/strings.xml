@@ -95,6 +95,7 @@
     <string name="txt_data_matrix">DATA MATRIX</string>
     <string name="text_with_separators">显示分隔符</string>
     <string name="setting_max_output_length">最大输出长度（0：不限制）</string>
+    <string name="setting_max_length">最大长度（0：不限制）</string>
     <string name="txt_ean8">EAN-8</string>
     <string name="txt_code11">Code11</string>
     <string name="code11_max_length_tip">最大长度（6-127）</string>
@@ -121,6 +122,10 @@
     <string name="text_scan_notification_volume">扫码提示音量</string>
 
     <string name="text_datamatrix_scan_type">码制类型</string>
+
     <string name="max_length_tip_1_3116">最大长度（0-3116）</string>
     <string name="max_length_tip_0_7089">最大长度（0-7089）</string>
+
+    <string name="pref_setting_debug_title">调试选项</string>
+    <string name="setting_use_aimid_in_result">将AimID作为条码名称</string>
 </resources>

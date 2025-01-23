@@ -94,6 +94,7 @@
     <string name="txt_data_matrix">DATA MATRIX</string>
     <string name="text_with_separators">With Separators</string>
     <string name="setting_max_output_length">Max out length (0: no limit)</string>
+    <string name="setting_max_length">Max length (0: no limit)</string>
     <string name="txt_ean8">EAN-8</string>
     <string name="txt_code11">Code11</string>
     <string name="code11_max_length_tip">Maximum length(6-127)</string>
@@ -122,4 +123,7 @@
     <string name="text_datamatrix_scan_type">Code type</string>
     <string name="max_length_tip_1_3116">Maximum length(0-3116)</string>
     <string name="max_length_tip_0_7089">Maximum length(0-7089)</string>
+
+    <string name="pref_setting_debug_title">Debug options</string>
+    <string name="setting_use_aimid_in_result">Use AimID barcode type</string>
 </resources>

@@ -349,6 +349,19 @@
                 android:entries="@array/letter_case_entries" />
         </LinearLayout>
 
+        <!-- 调试选项 -->
+        <!--Debug options-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/pref_setting_debug_title" />
+
+        <!-- 将AimID作为条码名称 -->
+        <!--Use AimID barcode type-->
+        <Switch
+            android:id="@+id/pref_use_aimid_in_result"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/setting_use_aimid_in_result" />
+
         <!-- 配置管理 -->
         <!--configuration management-->
         <TextView

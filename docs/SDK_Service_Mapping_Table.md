@@ -21,6 +21,8 @@ The following table shown the mapping table of SDK and Service version.
 |   1.1.12    |                  Only 1.3.40.2.4                  |
 |   1.1.13    |     1.3.40.2.4<br/>1.3.46.2 or higher version     |
 |   1.1.14    |            1.3.46.7 or higher version             |
-|   1.1.15    | 1.3.40.2.7 or later (Magnit Requirements version) |
+|   1.1.15    | 1.3.40.2.6 or later (Magnit Requirements version) |
+|   1.1.16    |                1.3.48.0.6 or later                |
+|   1.1.17    |                1.3.49.0.2 or later                |
 
 **Note: DO NOT USE ANY SDK WITHOUT VERSION LISTED IN THE ABOVE TABLE!!!**

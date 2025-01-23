@@ -25,6 +25,8 @@
 | 1.1.14  | 2024/11/21 | 增加设置扫码提示音接口。                                               |
 | 1.1.15  | 2024/12/10 | 增加Datamatrix码制可以切换和单独控制。                                   |
 | 1.1.16  | 2024/12/13 | 增加Datamatrix和QrCode码制最大长度功能来替换最大输出长度功能                     |
+| 1.1.17  | 2025/01/23 | 增加将AimID作为条码名称的开关接口                                        |
+>>>>>>> 8210683 (SDK 1.1.17  Add API to Use AimID barcode type switch interface.)
 
 # 功能使用
 
@@ -1146,4 +1148,13 @@ void setDataMatrixMode(int trye);
 int matrixMode = XcBarcodeScanner.getDataMatrixMode();
 
 XcBarcodeScanner.setDataMatrixMode(position);
+```
+
+
+## 设置将AimID作为条码名称打开或关闭
+
+支持参数：true / false
+
+```java
+void setUseAimidInResult(boolean isEnable);
 ```

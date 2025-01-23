@@ -24,7 +24,8 @@
 | 1.1.13      | 2024/10/18 | Add API to support set/get properties for the GS1-128/GS1-DATABAR/ITF25/MSI/QRCode/UPCE symbology                                                                                               |
 | 1.1.14      | 2024/11/21 | Add API to set the prompt tone interface for code scanning                                                                                                                                      |
 | 1.1.15      | 2024/12/10 | Add API to Datamatrix code system can be switched and controlled separately.                                                                                                                    |
-| 1.1.16      | 2024/12/13 | Add Datamatrix and QrCode maximum length function to replace the maximum output length function.                                                                                                |
+| 1.1.16      | 2024/12/13 | Add Datamatrix and QrCode maximum length function to replace the maximum output length function.                                                                                                | |   
+| 1.1.17      | 2025/01/23 | Add API to Use AimID barcode type switch interface.                               |
 
 # Basic function
 
@@ -1264,4 +1265,12 @@ Sample code:
 int matrixMode = XcBarcodeScanner.getDataMatrixMode();
 
 XcBarcodeScanner.setDataMatrixMode(position);
+```
+
+## Set AimID to be turned on or off as the bar code name
+
+Supported parameters: true/false
+
+```java
+void setUseAimidInResult(boolean isEnable);
 ```

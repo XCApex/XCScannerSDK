@@ -239,6 +239,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            Log.d(TAG,"isLoopScanMode = " + isLoopScanMode);
             if (isLoopScanMode) {
                 // If loop scan enabled, we use only ACTION_DOWN to control start or stop.
                 if (XcBarcodeScanner.isLoopScanRunning()) {
@@ -271,6 +272,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.sp_scan_mode) {
             onScanModeChanged(position == 1);
+
+            Log.d(TAG,"position = " + position);
         }
     }
 
@@ -286,6 +289,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         XcBarcodeScanner.stopScan();
         if (XcBarcodeScanner.isLoopScanRunning()) {
             XcBarcodeScanner.stopLoopScan();
+
+            Log.d(TAG, "demo stopLoopScan()");
         }
 
         isLoopScanMode = isLoopScan;

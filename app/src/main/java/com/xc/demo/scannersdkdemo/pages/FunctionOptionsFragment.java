@@ -40,7 +40,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     private Spinner mSpAimEnable, mSpIllumeEnable, mSpBrightness;
 
-    private Switch mSwLeftScanEnable;
+    private Switch mSwLeftScanEnable, mUseAimidInResult;
 
     private Spinner mSpPrefixChar, mSpSuffixChar, mSpLetterCase;
 
@@ -148,6 +148,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Log.d("bo.li", "isChecked = " + isChecked);
         String funName = "onCheckedChanged";
         if (buttonView.getId() == R.id.sw_exactly_multi_num) {
             int numIndex = mSpMultiBarcodeNum.getSelectedItemPosition();
@@ -163,6 +164,10 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         } else if (buttonView.getId() == R.id.sw_left_scan_enable) {
             Log.i(TAG, funName + ":: leftScanKeyEnable = " + isChecked);
             XcBarcodeScanner.setLeftScanKeyEnable(isChecked);
+        }else if (buttonView.getId() == R.id.pref_use_aimid_in_result) {
+            Log.i(TAG, funName + ":: pref_use_aimid_in_result = " + isChecked);
+            Log.d("bo.li", funName + ":: pref_use_aimid_in_result = " + isChecked);
+            XcBarcodeScanner.setUseAimidInResult(isChecked);
         }
     }
 
@@ -282,6 +287,11 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         mSwLeftScanEnable = view.findViewById(R.id.sw_left_scan_enable);
         mSwLeftScanEnable.setOnCheckedChangeListener(this);
         mSwLeftScanEnable.setChecked(DefaultOptions.DEFAULT_LEFT_SCAN_ENABLE_VAL);
+
+        // bo.li
+        mUseAimidInResult = view.findViewById(R.id.pref_use_aimid_in_result);
+        mUseAimidInResult.setOnCheckedChangeListener(this);
+        mUseAimidInResult.setChecked(XcBarcodeScanner.getUseAimidInResult());
 
         mSpPrefixChar = view.findViewById(R.id.sp_prefix_char);
         mSpSuffixChar = view.findViewById(R.id.sp_suffix_char);
