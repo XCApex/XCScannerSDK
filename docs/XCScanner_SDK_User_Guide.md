@@ -4,28 +4,19 @@
 # Change log
 
 
-| **Version** | **Date**   | **Changes**                                                                                                                                                                                     |
-|-------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.0.0       | 2023/02/03 | Basic scan result callback and settings.                                                                                                                                                        |
-| 1.0.3       | 2023/02/12 | Add API.                                                                                                                                                                                        |
-| 1.0.4       | 2023/02/27 | Add suspend and resume API.                                                                                                                                                                     |
-| 1.0.6       | 2023/03/09 | Add version info, loopscan, multibarcodes and precise scan about API.                                                                                                                           |
-| 1.0.7       | 2023/03/10 | Add API to support config aimer and illume light work mode.                                                                                                                                     |
-| 1.0.8       | 2023/03/13 | Fixed SDK version in docs.                                                                                                                                                                      |
-| 1.0.9       | 2023/03/14 | Add API to support license acive and license state query.                                                                                                                                       |
-| 1.1.0       | 2023/03/15 | Add API to support get scan service status.                                                                                                                                                     |
-| 1.1.2       | 2023/04/03 | Add API to support get the latest decode image.                                                                                                                                                 |
-| 1.1.3       | 2023/04/11 | Add API to support set suffix2 and prefix2.                                                                                                                                                     |
-| 1.1.8       | 2024/05/16 | Add API to support set custom BroadcastReceiver, Disable/Enable Scan button, Export/Import configuration file, Configure barcode output failure event notification, Configure flash brightness. |
-| 1.1.9       | 2024/08/26 | Add API to support set/get properties for the EAN13/Matrix25/UPCA symbology                                                                                                                     |
-| 1.1.10      | 2024/09/24 | Add API to support set/get properties for the scan trigger mode.                                                                                                                                |
-| 1.1.11      | 2024/10/10 | Add API to support set/get properties for the Code39/DATAMATRIX/EAN8 symbology                                                                                                                  |
-| 1.1.12      | 2024/10/17 | Add API to support set/get properties for the code11/coded49/code93/code128/codeabar symbology                                                                                                  |
-| 1.1.13      | 2024/10/18 | Add API to support set/get properties for the GS1-128/GS1-DATABAR/ITF25/MSI/QRCode/UPCE symbology                                                                                               |
-| 1.1.14      | 2024/11/21 | Add API to set the prompt tone interface for code scanning                                                                                                                                      |
-| 1.1.15      | 2024/12/10 | Add API to Datamatrix code system can be switched and controlled separately.                                                                                                                    |
-| 1.1.16      | 2024/12/13 | Add Datamatrix and QrCode maximum length function to replace the maximum output length function.                                                                                                | |   
-| 1.1.17      | 2025/01/23 | Add API to Use AimID barcode type switch interface.                               |
+| **Version** | **Date**   | **Changes**                                                                                                               |
+|-------------|------------|---------------------------------------------------------------------------------------------------------------------------|
+| 1.0.0       | 2023/02/03 | Basic scan result callback and settings.                                                                                  |
+| 1.0.3       | 2023/02/12 | Add API.                                                                                                                  |
+| 1.0.4       | 2023/02/27 | Add suspend and resume API.                                                                                               |
+| 1.0.6       | 2023/03/09 | Add version info, loopscan, multibarcodes and precise scan about API.                                                     |
+| 1.0.7       | 2023/03/10 | Add API to support config aimer and illume light work mode.                                                               |
+| 1.0.8       | 2023/03/13 | Fixed SDK version in docs.                                                                                                |
+| 1.0.9       | 2023/03/14 | Add API to support license acive and license state query.                                                                 |
+| 1.1.0       | 2023/03/15 | Add API to support get scan service status.                                                                               |
+| 1.1.2       | 2023/04/03 | Add API to support get the latest decode image.                                                                           |
+| 1.1.3       | 2023/04/11 | Add API to support set suffix2 and prefix2.                                                                               |
+| 1.1.8       | 2025/03/07 | add API to support for escape, character Settings, preference for custom characters, and custom escape character Settings |
 
 # Basic function
 
@@ -613,664 +604,61 @@ XcBarcodeScanner.setFrontScanKeyEnable(false); // Disable front scanning button
 XcBarcodeScanner.setFrontScanKeyEnable(true); // Enable front scanning button
 ```
 
-## Export configuration file
+## Disable/Enable escape support
 
-Export the currently used configuration file to the specified directory.
-
-```java
-XcBarcodeScanner.exportSettings(String exportPath);
-```
-
-The format of the exported file must be of XML type, and the file name can only contain letters and numbers.Sample code:
+Turn on or off the switch that supports escaping to escape GS1 FNC1(0X1D)
 
 ```java
-String exportPath = Environment.getExternalStorageDirectory().getPath() + "/Scanner.xml";
-// Export the configuration file to sdcard and rename it to Scanner.xml
-XcBarcodeScanner.exportSettings(exportPath);  
+void needModifyGsCharacter(boolean isEnable);
 ```
-
-## Import configuration file
-
-You can use the configuration files in the specified directory through the interface provided by the SDK.
-
-```java
-XcBarcodeScanner.importSettingsByProfileName(String profileName, String importPath);
-```
-
-**Note:** The configuration file name can only contain letters and numbers. And **the configuration file must be exported through the "XcBarcodeScanner. exportSettings" interface.**
 
 Sample code:
 
 ```java
-String fileName = "Scanner";   // The file name cannot contain type suffix
-String importPath = Environment.getExternalStorageDirectory().getPath() + "/Scanner.xml";
-XcBarcodeScanner.importSettingsByProfileName(fileName, importPath);
+XcBarcodeScanner.needModifyGsCharacter(true); 
 ```
 
-## Configure barcode output failure event notification
 
-Use the following API to config type of notification when scan failed.
+## Set the target character to escape (single character)
 
-```java
-XcBarcodeScanner.setFailNotification(String notification);
-```
-
-All types of notifications defined in the class NotificationType.
+Set the target character to be escaped (single character)
 
 ```java
-public class NotificationType {
-    public static final String MUTE = "Mute";
-    public static final String SOUND = "Sound";
-    public static final String VIBRATOR = "Vib";
-    public static final String SOUND_VIBRATOR = "Sound/Vib";
-}
+boolean escapeSingleCharacterSettings(String str);
 ```
 
 Sample code:
 
-```
-XcBarcodeScanner.setFailNotification(NotificationType.MUTE); 
-XcBarcodeScanner.setFailNotification(NotificationType.SOUND);
+```java
+XcBarcodeScanner.escapeSingleCharacterSettings("a");
+XcBarcodeScanner.escapeSingleCharacterSettings("#"); 
 ```
 
-## Configure flash brightness
+## Disable/Enable preference for custom escape characters
 
-Use the following API to config flash brightness.
+To turn on or off the preference for custom escape characters, GS1 FNC1(0X1D) can be escaped and replaced with a defined string
 
 ```java
-XcBarcodeScanner.setStrobeLightBrightness(int brightness);
-```
-
-All types of brightness defined in the class StrobeLightBrightness.
-
-```java
-public class StrobeLightBrightness {
-    public static int FULL_BRIGHTNESS = 4;
-    public static int MEDIUM_BRIGHTNESS = 7;
-    public static int WEAK_BRIGHTNESS = 5;
-    public static int WEAKEST_BRIGHTNESS = 6;
-}
+void customEscapeCharacters(boolean isEnable);
 ```
 
 Sample code:
 
-```
-XcBarcodeScanner.setStrobeLightBrightness(StrobeLightBrightness.WEAK_BRIGHTNESS);
+```java
+XcBarcodeScanner.customEscapeCharacters(true); 
 ```
 
-## Get barcode properties
+## Set the target character to escape (up to five characters)
 
-Use the following API to get barcode properties.
+Supports setting the target character to be escaped
 
 ```java
-int getDecoderTagValue(int tag);
-```
-
-The properties that support queries are defined in the XCBarcodeTag class:
-
-```
-public class XCBarcodeTag {
-    // Code11
-    // Minimum length(6-127).
-    // The range of values is integers from 6 to 127.   
-    public static final int TAG_CODE11_MIN_LENGTH            = 0x1A01E002;
-    // Maximum length(6-127).
-    // The range of values is integers from 6 to 127.
-    public static final int TAG_CODE11_MAX_LENGTH            = 0x1A01E003;
-    // Check digit options
-    // 0:Two Check Digits Output;1:One Check Digit Output;2:Two Check Digits No Output;
-    // 3:One Check Digit No Output;4:Disable Check Digit
-    public static final int TAG_CODE11_CHECK_DIGIT_MODE      = 0x1A01E004;
-
-    // Code39
-    // Check digit options.
-    // 0:Disable Check Digit;1:Enable Check Digit and No Output;2:Enable Check Digit and Output.
-    public static final int TAG_CODE39_CHECK_DIGIT_MODE      = 0x1A016004;
-    // Transmit start/stop char.
-    // 1:enable;0:disable
-    public static final int TAG_CODE39_START_STOP_TRANSMIT   = 0x1A016007;
-    // Code 39 Full ASCII.
-    // 1:enable;0:disable
-    public static final int TAG_CODE39_FULL_ASCII_ENABLED    = 0x1A016006;
-    // Code39 Base32 decode.
-    // 1:enable;0:disable
-    public static final int TAG_CODE39_BASE32_ENABLED        = 0x1A016008;
-    // Maximum length(1-127).
-    // The range of values is integers from 1 to 127.
-    public static final int TAG_CODE39_MAX_LENGTH            = 0x1A016003;
-    // Minimum length(1-127).
-    // The range of values is integers from 1 to 127.
-    public static final int TAG_CODE39_MIN_LENGTH            = 0x1A016002;
-    
-    // Code49
-    // Minimum length(1-127).
-    // The range of values is integers from 1 to 127.   
-    public static final int TAG_CODE49_MIN_LENGTH            = 0x0C035002;
-    // Maximum length(1-127).
-    // The range of values is integers from 1 to 127.
-    public static final int TAG_CODE49_MAX_LENGTH            = 0x0C035003;
-    
-    // Code93
-    // Maximum length(2-127).
-    // The range of values is integers from 2 to 127.
-    public static final int TAG_CODE93_MAX_LENGTH            = 0x1A01D003;
-    // Minimum length(2-127).
-    // The range of values is integers from 2 to 127. 
-    public static final int TAG_CODE93_MIN_LENGTH            = 0x1A01D002;
-    
-    // code128
-    // With Separators
-    // 1:enable;0:disable
-    public static final int TAG_C128_SEPARATOR_ENABLED       = 0x1A014006;
-    // Maximum length(1-127).
-    // The range of values is integers from 1 to 127.
-    public static final int TAG_CODE128_MAX_LENGTH           = 0x1A014003;
-    // Minimum length(1-127).
-    // The range of values is integers from 1 to 127. 
-    public static final int TAG_CODE128_MIN_LENGTH           = 0x1A014002;
-    
-    // Codabar
-    // Check digit options
-    // 0:Disable Check Digit;1:Enable Check Digit and No Output;2:Enable Check Digit and Output
-    public static final int TAG_CODABAR_CHECK_DIGIT_MODE     = 0x1A01F005;
-    // Transmit start/stop char
-    // 1:enable;0:disable
-    public static final int TAG_CODABAR_START_STOP_TRANSMIT  = 0x1A01F004;
-    // Minimum length(4-127).
-    // The range of values is integers from 4 to 127. 
-    public static final int TAG_CODABAR_MIN_LENGTH           = 0x1A01F002;
-    
-    // DataMatrix
-    // With Separators.
-    // 1:display;0:hide
-    public static final int TAG_DATAMATRIX_SEPARATOR_ENABLED = 0x1A029004;
-    // Max out length (0: no limit).
-    // An integer greater than or equal to 0, where 0 indicates no restriction.
-    public static final int TAG_DATAMATRIX_OUTPUT_MAX_LENGTH = 0x1A029005;
-    // Maximum length(1-3116).
-    // The range of values is integers from 1 to 3116.
-    public static final int TAG_DATAMATRIX_MAX_LENGTH        = 0x1A029003;
-
-    // EAN-8
-    // Transmit check digit.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_CHECK_DIGIT_TRANSMIT    = 0x1A012002;
-    // 2 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_2CHAR_ADDENDA_ENABLED   = 0x1A012003;
-    // 5 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_5CHAR_ADDENDA_ENABLED   = 0x1A012004;
-    // Addenda Required.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_ADDENDA_REQUIRED        = 0x1A012005;
-    // Addenda add Separator.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_ADDENDA_SEPARATOR       = 0x1A012006;
-    
-    // EAN-13
-    // Transmit check digit.
-    // 1:enable;0:disable
-    public static final int TAG_EAN13_CHECK_DIGIT_TRANSMIT   = 0x1A013002;
-    // 2 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_EAN13_2CHAR_ADDENDA_ENABLED  = 0x1A013003;
-    // 5 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_EAN13_5CHAR_ADDENDA_ENABLED  = 0x1A013004;
-    // Addenda Required.
-    // 1:enable;0:disable
-    public static final int TAG_EAN13_ADDENDA_REQUIRED       = 0x1A013005;
-    // Addenda add Separator.1:enable;0:disable
-    public static final int TAG_EAN13_ADDENDA_SEPARATOR      = 0x1A013006;
-    
-    // GS1 128
-    // With Separators
-    // 1:display;0:hide
-    public static final int TAG_GS1_128_SEPARATOR_ENABLED    = 0x1A015004;
-    
-    // GS1 DATABAR(GS1 DataBar-14)
-    // GS1 DataBar Limited
-    // 1:enable;0:disable
-    public static final int TAG_RSS_LIMITED_ENABLED          = 0x1A022002;
-    // GS1 DataBar Expanded
-    // 1:enable;0:disable
-    public static final int TAG_RSS_EXPANDED_ENABLED         = 0x1A022003;
-    
-    // ITF25
-    // Check digit options
-    // 0:Disable Check Digit;1:Enable Check Digit and No Output;2:Enable Check Digit and Output.
-    public static final int TAG_I25_CHECK_DIGIT_MODE         = 0x1A019004;
-    // Maximum length(2-127).
-    // The range of values is integers from 2 to 127.
-    public static final int TAG_I25_MAX_LENGTH               = 0x1A019003;
-    // Minimum length(2-127).
-    // The range of values is integers from 2 to 127. 
-    public static final int TAG_I25_MIN_LENGTH               = 0x1A019002;
-
-    // Matrix 2 of 5
-    // Check digit options.
-    // 0:Disable Check Digit;1:Enable Check Digit and Output;2:Enable Check Digit and No Output.
-    public static final int TAG_M25_CHECK_DIGIT_MODE         = 0x1A01C004;
-    
-    // MSI
-    // Check digit options
-    // 0:Disable;1:Mod 10 and output;2:Mod 10 without output;3:Mod 10/10 and output;
-    // 4:Mod 10/10 without output;5:Mod 11/10 and output;6:Mod 11/10 without output.
-    public static final int TAG_MSI_CHECK_DIGIT_MODE         = 0x1A021004;
-    // Minimum length(0-55).
-    // The range of values is integers from 0 to 55. 
-    public static final int TAG_MSI_MIN_LENGTH               = 0x1A021002;
-    
-    // QRCode
-    // MicroQR Enable
-    // 1:enable;0:disable
-    public static final int TAG_QR_ENABLED                   = 0x1A02A001;
-    // Max out length (0: no limit).
-    public static final int TAG_QR_MAX_OUTPUT_LENGTH         = 0x1A02A004;
-    // Maximum length(0-7089).
-    // The range of values is integers from 0 to 7089.
-    public static final int TAG_QR_MAX_LENGTH                = 0x1A02A003;
-
-    // UPC-A
-    // Transmit check digit.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_CHECK_DIGIT_TRANSMIT    = 0x1A010002;
-    // Number system digit.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_NUMBER_SYSTEM_TRANSMIT  = 0x1A010003;
-    // 2 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_2CHAR_ADDENDA_ENABLED   = 0x1A010004;
-    // 5 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_5CHAR_ADDENDA_ENABLED   = 0x1A010005;
-    // Addenda Required.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_ADDENDA_REQUIRED        = 0x1A010006;
-    // Addenda add Separator.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_ADDENDA_SEPARATOR       = 0x1A010007;
-    // Convert to EAN13.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_ADD_COUNTRY_CODE        = 0x1A010008;
-    
-    // UPC-E
-    // UPCE expansion
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_EXPAND                  = 0x1A011003;
-    // Transmit check digit
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_CHECK_DIGIT_TRANSMIT    = 0x1A011004;
-    // Number system digit
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_NUMBER_SYSTEM_TRANSMIT  = 0x1A011005;
-    // 2 Digit Addenda
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_2CHAR_ADDENDA_ENABLED   = 0x1A011006;
-    // 5 Digit Addenda
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_5CHAR_ADDENDA_ENABLED   = 0x1A011007;
-    // Addenda Required
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_ADDENDA_REQUIRED        = 0x1A011008;
-    // Addenda add Separator
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_ADDENDA_SEPARATOR       = 0x1A011009;
-}
+boolean customConversionCharacters(String str);
 ```
 
 Sample code:
 
-```
-// This method is used to check if stripping of EAN-13 check digit in decoded data is enabled.
-// 1:enable;0:disable
-int checkSumDef = XcBarcodeScanner.getDecoderTagValue(XCBarcodeTag.TAG_EAN13_CHECK_DIGIT_TRANSMIT);
-
-// Returns the constant of this type with the specified name.
-// 1:Enable Check Digit and Output;2:Enable Check Digit and No Output.
-int checkDigitDef = XcBarcodeScanner.getDecoderTagValue(XCBarcodeTag.TAG_M25_CHECK_DIGIT_MODE);
-
-// This method is used to enable/disable decoding of 2-digit supplemental code for UPC-A.
-// 1:enable;0:disable
-int twoAddonDef = XcBarcodeScanner.getDecoderTagValue(XCBarcodeTag.TAG_UPCA_2CHAR_ADDENDA_ENABLED);
-```
-
-## Set barcode properties
-
-Use the following API to set barcode properties.
-
 ```java
-void setDecoderTag(int tag, int value);
-```
-
-The properties that support queries are defined in the XCBarcodeTag class:
-
-```
-public class XCBarcodeTag {
-    // Code11
-    // Minimum length(6-127).
-    // The range of values is integers from 6 to 127.   
-    public static final int TAG_CODE11_MIN_LENGTH            = 0x1A01E002;
-    // Maximum length(6-127).
-    // The range of values is integers from 6 to 127.
-    public static final int TAG_CODE11_MAX_LENGTH            = 0x1A01E003;
-    // Check digit options
-    // 0:Two Check Digits Output;1:One Check Digit Output;2:Two Check Digits No Output;
-    // 3:One Check Digit No Output;4:Disable Check Digit
-    public static final int TAG_CODE11_CHECK_DIGIT_MODE      = 0x1A01E004;
-
-    // Code39
-    // Check digit options.
-    // 0:Disable Check Digit;1:Enable Check Digit and No Output;2:Enable Check Digit and Output.
-    public static final int TAG_CODE39_CHECK_DIGIT_MODE      = 0x1A016004;
-    // Transmit start/stop char.
-    // 1:enable;0:disable
-    public static final int TAG_CODE39_START_STOP_TRANSMIT   = 0x1A016007;
-    // Code 39 Full ASCII.
-    // 1:enable;0:disable
-    public static final int TAG_CODE39_FULL_ASCII_ENABLED    = 0x1A016006;
-    // Code39 Base32 decode.
-    // 1:enable;0:disable
-    public static final int TAG_CODE39_BASE32_ENABLED        = 0x1A016008;
-    // Maximum length(1-127).
-    // The range of values is integers from 1 to 127.
-    public static final int TAG_CODE39_MAX_LENGTH            = 0x1A016003;
-    // Minimum length(1-127).
-    // The range of values is integers from 1 to 127.
-    public static final int TAG_CODE39_MIN_LENGTH            = 0x1A016002;
-    
-    // Code49
-    // Minimum length(1-127).
-    // The range of values is integers from 1 to 127.   
-    public static final int TAG_CODE49_MIN_LENGTH            = 0x0C035002;
-    // Maximum length(1-127).
-    // The range of values is integers from 1 to 127.
-    public static final int TAG_CODE49_MAX_LENGTH            = 0x0C035003;
-    
-    // Code93
-    // Maximum length(2-127).
-    // The range of values is integers from 2 to 127.
-    public static final int TAG_CODE93_MAX_LENGTH            = 0x1A01D003;
-    // Minimum length(2-127).
-    // The range of values is integers from 2 to 127. 
-    public static final int TAG_CODE93_MIN_LENGTH            = 0x1A01D002;
-    
-    // code128
-    // With Separators
-    // 1:enable;0:disable
-    public static final int TAG_C128_SEPARATOR_ENABLED       = 0x1A014006;
-    // Maximum length(1-127).
-    // The range of values is integers from 1 to 127.
-    public static final int TAG_CODE128_MAX_LENGTH           = 0x1A014003;
-    // Minimum length(1-127).
-    // The range of values is integers from 1 to 127. 
-    public static final int TAG_CODE128_MIN_LENGTH           = 0x1A014002;
-    
-    // Codabar
-    // Check digit options
-    // 0:Disable Check Digit;1:Enable Check Digit and No Output;2:Enable Check Digit and Output
-    public static final int TAG_CODABAR_CHECK_DIGIT_MODE     = 0x1A01F005;
-    // Transmit start/stop char
-    // 1:enable;0:disable
-    public static final int TAG_CODABAR_START_STOP_TRANSMIT  = 0x1A01F004;
-    // Minimum length(4-127).
-    // The range of values is integers from 4 to 127. 
-    public static final int TAG_CODABAR_MIN_LENGTH           = 0x1A01F002;
-    
-    // DataMatrix
-    // With Separators.
-    // 1:display;0:hide
-    public static final int TAG_DATAMATRIX_SEPARATOR_ENABLED = 0x1A029004;
-    // Max out length (0: no limit).
-    // An integer greater than or equal to 0, where 0 indicates no restriction.
-    public static final int TAG_DATAMATRIX_OUTPUT_MAX_LENGTH = 0x1A029005;
-    // Maximum length(1-3116).
-    // The range of values is integers from 1 to 3116.
-    public static final int TAG_DATAMATRIX_MAX_LENGTH        = 0x1A029003;
-
-    // EAN-8
-    // Transmit check digit.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_CHECK_DIGIT_TRANSMIT    = 0x1A012002;
-    // 2 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_2CHAR_ADDENDA_ENABLED   = 0x1A012003;
-    // 5 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_5CHAR_ADDENDA_ENABLED   = 0x1A012004;
-    // Addenda Required.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_ADDENDA_REQUIRED        = 0x1A012005;
-    // Addenda add Separator.
-    // 1:enable;0:disable
-    public static final int TAG_EAN8_ADDENDA_SEPARATOR       = 0x1A012006;
-    
-    // EAN-13
-    // Transmit check digit.
-    // 1:enable;0:disable
-    public static final int TAG_EAN13_CHECK_DIGIT_TRANSMIT   = 0x1A013002;
-    // 2 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_EAN13_2CHAR_ADDENDA_ENABLED  = 0x1A013003;
-    // 5 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_EAN13_5CHAR_ADDENDA_ENABLED  = 0x1A013004;
-    // Addenda Required.
-    // 1:enable;0:disable
-    public static final int TAG_EAN13_ADDENDA_REQUIRED       = 0x1A013005;
-    // Addenda add Separator.1:enable;0:disable
-    public static final int TAG_EAN13_ADDENDA_SEPARATOR      = 0x1A013006;
-    
-    // GS1 128
-    // With Separators
-    // 1:display;0:hide
-    public static final int TAG_GS1_128_SEPARATOR_ENABLED    = 0x1A015004;
-    
-    // GS1 DATABAR(GS1 DataBar-14)
-    // GS1 DataBar Limited
-    // 1:enable;0:disable
-    public static final int TAG_RSS_LIMITED_ENABLED          = 0x1A022002;
-    // GS1 DataBar Expanded
-    // 1:enable;0:disable
-    public static final int TAG_RSS_EXPANDED_ENABLED         = 0x1A022003;
-    
-    // ITF25
-    // Check digit options
-    // 0:Disable Check Digit;1:Enable Check Digit and No Output;2:Enable Check Digit and Output.
-    public static final int TAG_I25_CHECK_DIGIT_MODE         = 0x1A019004;
-    // Maximum length(2-127).
-    // The range of values is integers from 2 to 127.
-    public static final int TAG_I25_MAX_LENGTH               = 0x1A019003;
-    // Minimum length(2-127).
-    // The range of values is integers from 2 to 127. 
-    public static final int TAG_I25_MIN_LENGTH               = 0x1A019002;
-
-    // Matrix 2 of 5
-    // Check digit options.
-    // 0:Disable Check Digit;1:Enable Check Digit and Output;2:Enable Check Digit and No Output.
-    public static final int TAG_M25_CHECK_DIGIT_MODE         = 0x1A01C004;
-    
-    // MSI
-    // Check digit options
-    // 0:Disable;1:Mod 10 and output;2:Mod 10 without output;3:Mod 10/10 and output;
-    // 4:Mod 10/10 without output;5:Mod 11/10 and output;6:Mod 11/10 without output.
-    public static final int TAG_MSI_CHECK_DIGIT_MODE         = 0x1A021004;
-    // Minimum length(0-55).
-    // The range of values is integers from 0 to 55. 
-    public static final int TAG_MSI_MIN_LENGTH               = 0x1A021002;
-    
-    // QRCode
-    // MicroQR Enable
-    // 1:enable;0:disable
-    public static final int TAG_QR_ENABLED                   = 0x1A02A001;
-    // Max out length (0: no limit).
-    public static final int TAG_QR_MAX_OUTPUT_LENGTH         = 0x1A02A004;
-    // Maximum length(0-7089).
-    // The range of values is integers from 0 to 7089.
-    public static final int TAG_QR_MAX_LENGTH                = 0x1A02A003;
-
-    // UPC-A
-    // Transmit check digit.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_CHECK_DIGIT_TRANSMIT    = 0x1A010002;
-    // Number system digit.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_NUMBER_SYSTEM_TRANSMIT  = 0x1A010003;
-    // 2 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_2CHAR_ADDENDA_ENABLED   = 0x1A010004;
-    // 5 Digit Addenda.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_5CHAR_ADDENDA_ENABLED   = 0x1A010005;
-    // Addenda Required.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_ADDENDA_REQUIRED        = 0x1A010006;
-    // Addenda add Separator.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_ADDENDA_SEPARATOR       = 0x1A010007;
-    // Convert to EAN13.
-    // 1:enable;0:disable
-    public static final int TAG_UPCA_ADD_COUNTRY_CODE        = 0x1A010008;
-    
-    // UPC-E
-    // UPCE expansion
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_EXPAND                  = 0x1A011003;
-    // Transmit check digit
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_CHECK_DIGIT_TRANSMIT    = 0x1A011004;
-    // Number system digit
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_NUMBER_SYSTEM_TRANSMIT  = 0x1A011005;
-    // 2 Digit Addenda
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_2CHAR_ADDENDA_ENABLED   = 0x1A011006;
-    // 5 Digit Addenda
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_5CHAR_ADDENDA_ENABLED   = 0x1A011007;
-    // Addenda Required
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_ADDENDA_REQUIRED        = 0x1A011008;
-    // Addenda add Separator
-    // 1:enable;0:disable
-    public static final int TAG_UPCE_ADDENDA_SEPARATOR       = 0x1A011009;
-}
-```
-
-Sample code:
-
-```
-// This method is used to enable/disable stripping of EAN-13 check digit in decoded data.
-// 1:enable;0:disable
-XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_EAN13_CHECK_DIGIT_TRANSMIT, 1);
-
-// This method is used to set the optional checksum setting of Symbologies.Matrix2of5Properties to the decoder.
-// 0:Disable Check Digit;1:Enable Check Digit and Output;2:Enable Check Digit and No Output.
-XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_M25_CHECK_DIGIT_MODE, 2);
-
-// This method is used to enable/disable decoding of 2-digit supplemental code for UPC-A.
-// 1:enable;0:disable
-XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_UPCA_2CHAR_ADDENDA_ENABLED, 0);
-```
-
-## Get scan trigger mode
-
-Use the following API to get scan trigger mode.
-
-```java
-String getScanTriggerMode();
-```
-
-The properties that support queries are defined in the ScanTriggerMode class:
-
-```
-public class ScanTriggerMode {
-    public static final String STOP_ON_RELEASE = "SYNC"; //Stop on release
-    public static final String STOP_ON_TIMEOUT = "TIMEOUT"; //Stop on timeout
-}
-```
-
-Sample code:
-
-```
-String defMode = XcBarcodeScanner.getScanTriggerMode();
-```
-
-## Set scan trigger mode
-
-Use the following API to set scan trigger mode.
-
-```java
-void setScanTriggerMode(String val);
-```
-
-The properties that support queries are defined in the ScanTriggerMode class:
-
-```
-public class ScanTriggerMode {
-    public static final String STOP_ON_RELEASE = "SYNC"; //Stop on release
-    public static final String STOP_ON_TIMEOUT = "TIMEOUT"; //Stop on timeout
-}
-```
-
-Sample code:
-
-```
-//set the scan trigger mode to stop on release
-XcBarcodeScanner.setScanTriggerMode(ScanTriggerMode.STOP_ON_RELEASE); 
-
-//set the scan trigger mode to stop on timeout
-XcBarcodeScanner.setScanTriggerMode(ScanTriggerMode.STOP_ON_TIMEOUT);
-```
-
-## Set the volume of code scan prompt
-
-The volume of code scan can be set through this interface. The parameters are 0.0-1.0
-
-```java
-void setScanVolume(float volume)
-```
-
-
-## Sets and gets the subtype to which the Datamatrix code system is currently applied
-
-This interface allows you to set the current type of Datamatrix code system (standard code only, reverse color code only, all enabled).
-
-```
-<string-array name="matrix_mode_array" translatable="false">
-    <item>Standard Only </item>
-    <item>Inverted Only</item>
-    <item>Auto Detection</item>
-</string-array>
-
-
-<string-array name="matrix_mode_value" translatable="false">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-</string-array>
-
-// Get the code system of type DataMatrix
-int getDataMatrixMode();
-
-// Example Set the DataMatrix code
-// Supported parameters: 0: standard code only, 1: reverse color code only, 2: all enabled
-void setDataMatrixMode(int trye);
-```
-
-Sample code:
-
-```
-int matrixMode = XcBarcodeScanner.getDataMatrixMode();
-
-XcBarcodeScanner.setDataMatrixMode(position);
-```
-
-## Set AimID to be turned on or off as the bar code name
-
-Supported parameters: true/false
-
-```java
-void setUseAimidInResult(boolean isEnable);
+XcBarcodeScanner.customConversionCharacters("abcde");
+XcBarcodeScanner.customConversionCharacters("12345"); 
 ```

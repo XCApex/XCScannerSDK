@@ -126,4 +126,13 @@
 
     <string name="pref_setting_debug_title">Debug options</string>
     <string name="setting_use_aimid_in_result">Use AimID barcode type</string>
+
+    <string name="character_modify_title">Character transform options</string>
+    <string name="character_modify_enable">Enable character transform</string>
+    <string name="character_gs_fnc1_0x1d">GS1 FNC1 (0x1D)</string>
+    <string name="pref_character_custom_enable">Custom translation characters are preferred</string>
+    <string name="pref_character_custom">Custom translation characters</string>
+    <string name="pref_character_success">Successful setting</string>
+    <string name="text_character_failed">Failed setting</string>
+    <string name="pref_character_custom_failed">Failed to set: The character length is greater than 5</string>
 </resources>

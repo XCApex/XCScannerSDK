@@ -115,26 +115,8 @@ public class ScannerHelper implements ScannerResultSubject, ScannerSymResult {
 
         Log.i(TAG, "Service version = " + serviceVer + " -> sdk version = " + sdkVer);
         if (sdkVer.equals("1.1.8")) {
-            return checkServiceVersionMatches(serviceVer, "1.3.40.1");
-        } else if (sdkVer.equals("1.1.9")) {
-            return checkServiceVersionMatches(serviceVer, "1.3.40.2.1");
-        } else if (sdkVer.equals("1.1.3")) {
-            return checkServiceVersionMatches(serviceVer, "1.3.7");
-        } else if (sdkVer.equals("1.1.2")) {
-            return checkServiceVersionMatches(serviceVer, "1.3.5");
-        } else if (sdkVer.equals("1.1.0")) {
-            return checkServiceVersionMatches(serviceVer, "1.3.1");
-        } else if (sdkVer.equals("1.1.10")) {
-            return serviceVer.equals("1.3.40.2.2");
-        } else if (sdkVer.equals("1.1.11")) {
-            return serviceVer.equals("1.3.40.2.3");
-        } else if (sdkVer.equals("1.1.12") || sdkVer.equals("1.1.13")) {
-            return serviceVer.equals("1.3.40.2.4")
-                    || checkServiceVersionMatches(serviceVer, "1.3.46.2");
-        } else if(sdkVer.equals("1.1.14")){
-            return serviceVer.equals("1.3.46.7");
-        } else if(sdkVer.equals("1.1.15")){
-            return serviceVer.equals("1.3.40.2.6");
+            //return checkServiceVersionMatches(serviceVer, "1.3.29.22");
+            return serviceVer.equals("1.3.29.21");
         } else {
             Log.e(TAG, "DO NOT USE ANY SDK WITHOUT VERSION LISTED IN THE TABLE!!!");
             return false;

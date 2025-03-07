@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xc.demo.scannersdkdemo.BaseFragment;
 import com.xc.demo.scannersdkdemo.DefaultOptions;
@@ -40,11 +42,13 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     private Spinner mSpAimEnable, mSpIllumeEnable, mSpBrightness;
 
-    private Switch mSwLeftScanEnable, mUseAimidInResult;
+    private Switch mSwLeftScanEnable, mUseAimidInResult, mCharacterModifyEnable, mCharacterCustomEnable;
 
     private Spinner mSpPrefixChar, mSpSuffixChar, mSpLetterCase;
 
     private Button mBtnExport, mBtnImport;
+
+    private EditText textCharacterModify, textCharacterCustom;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +69,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             String[] triggerMode = getResources().getStringArray(R.array.scan_trigger_mode_values);
             Log.i(TAG, funName + ":: triggerMode = " + triggerMode[position]);
             // set scan trigger mode
-            XcBarcodeScanner.setScanTriggerMode(triggerMode[position]);
+//            XcBarcodeScanner.setScanTriggerMode(triggerMode[position]);
         } else if (parent.getId() == R.id.sp_data_receive_method) {
             String[] dataReceiveMethod = getResources().getStringArray(R.array.data_receive_method_values);
             Log.i(TAG, funName + ":: dataReceiveMethod = " + dataReceiveMethod[position]);
@@ -90,25 +94,25 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             // set success notification
             XcBarcodeScanner.setSuccessNotification(successNotification[position]);
 
-            Log.d(TAG,"sp_success_notification");
+            Log.d(TAG, "sp_success_notification");
         } else if (parent.getId() == R.id.sp_fail_notification) {
             String[] failNotification = getResources().getStringArray(R.array.scan_notification_values);
             Log.i(TAG, funName + ":: failNotification = " + failNotification[position]);
             // set fail notification
-            XcBarcodeScanner.setFailNotification(failNotification[position]);
+//            XcBarcodeScanner.setFailNotification(failNotification[position]);
 
-            Log.d(TAG,"sp_fail_notification" );
+            Log.d(TAG, "sp_fail_notification");
 
         } else if (parent.getId() == R.id.scan_notification_volume) {
             String[] notificationVolume = getResources().getStringArray(R.array.scan_notification_volume_entries);
 //            Log.d(TAG, funName + ":: setScanVolume = " + notificationVolume[position]);
 
             int volume = Integer.parseInt(notificationVolume[position].replace("%", ""));
-            Log.d(TAG,"volume = " + volume / 100f);
-            XcBarcodeScanner.setScanVolume(volume / 100f);
-            Log.d(TAG,"scan_notification_volume" );
+            Log.d(TAG, "volume = " + volume / 100f);
+//            XcBarcodeScanner.setScanVolume(volume / 100f);
+            Log.d(TAG, "scan_notification_volume");
 
-        }else if (parent.getId() == R.id.sp_aim_enable) {
+        } else if (parent.getId() == R.id.sp_aim_enable) {
             int[] aimMode = getResources().getIntArray(R.array.aim_lights_values);
             Log.i(TAG, funName + ":: aimMode = " + aimMode[position]);
             // set aim mode
@@ -122,7 +126,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             int[] brightness = getResources().getIntArray(R.array.strobe_brightness_values);
             Log.i(TAG, funName + ":: brightness = " + brightness[position]);
             // set strobe light brightness
-            XcBarcodeScanner.setStrobeLightBrightness(brightness[position]);
+//            XcBarcodeScanner.setStrobeLightBrightness(brightness[position]);
         } else if (parent.getId() == R.id.sp_prefix_char) {
             String[] prefix = getResources().getStringArray(R.array.prefix_char_entries);
             Log.i(TAG, funName + ":: prefix = " + prefix[position]);
@@ -148,7 +152,6 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Log.d("bo.li", "isChecked = " + isChecked);
         String funName = "onCheckedChanged";
         if (buttonView.getId() == R.id.sw_exactly_multi_num) {
             int numIndex = mSpMultiBarcodeNum.getSelectedItemPosition();
@@ -164,10 +167,15 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         } else if (buttonView.getId() == R.id.sw_left_scan_enable) {
             Log.i(TAG, funName + ":: leftScanKeyEnable = " + isChecked);
             XcBarcodeScanner.setLeftScanKeyEnable(isChecked);
-        }else if (buttonView.getId() == R.id.pref_use_aimid_in_result) {
+        } else if (buttonView.getId() == R.id.pref_use_aimid_in_result) {
             Log.i(TAG, funName + ":: pref_use_aimid_in_result = " + isChecked);
-            Log.d("bo.li", funName + ":: pref_use_aimid_in_result = " + isChecked);
-            XcBarcodeScanner.setUseAimidInResult(isChecked);
+//            XcBarcodeScanner.setUseAimidInResult(isChecked);
+        } else if (buttonView.getId() == R.id.pref_character_modify_enable) {
+            Log.i(TAG, funName + ":: pref_character_modify_enable = " + isChecked);
+            XcBarcodeScanner.needModifyGsCharacter(isChecked);
+        } else if (buttonView.getId() == R.id.pref_character_custom_enable) {
+            Log.i(TAG, funName + ":: pref_character_custom_enable = " + isChecked);
+            XcBarcodeScanner.customEscapeCharacters(isChecked);
         }
     }
 
@@ -181,11 +189,11 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         } else if (viewId == R.id.btn_export) {
             String exportPath = Environment.getExternalStorageDirectory().getPath() + "/XCScannerSDK.xml";
             // Export the configuration file to sdcard and rename it to XCScannerSDK.xml
-            XcBarcodeScanner.exportSettings(exportPath);
+//            XcBarcodeScanner.exportSettings(exportPath);
         } else if (viewId == R.id.btn_import) {
             String fileName = "XCScannerSDK";
             String importPath = Environment.getExternalStorageDirectory().getPath() + "/XCScannerSDK.xml";
-            XcBarcodeScanner.importSettingsByProfileName(fileName, importPath);
+//            XcBarcodeScanner.importSettingsByProfileName(fileName, importPath);
         }
     }
 
@@ -195,18 +203,14 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
     private void setBroadcastActionDialog() {
         String curAction = mTvBroadcastAction.getText().toString();
         String curKey = mTvBroadcastKey.getText().toString();
-        AlertDialogUtils.showInputDialog(getActivity()
-                , getResources().getString(R.string.text_scan_result_action)
-                , curAction
-                , InputType.TYPE_CLASS_TEXT
-                , new AlertDialogUtils.OnInputDialogClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, String userInput) {
-                        mTvBroadcastAction.setText(userInput);
-                        XcBarcodeScanner.setScanResultBroadcast(userInput, curKey);
-                        notifyConfigChanged(DefaultOptions.KEY_CUSTOM_BROADCAST_ACTION, userInput);
-                    }
-                });
+        AlertDialogUtils.showInputDialog(getActivity(), getResources().getString(R.string.text_scan_result_action), curAction, InputType.TYPE_CLASS_TEXT, new AlertDialogUtils.OnInputDialogClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, String userInput) {
+                mTvBroadcastAction.setText(userInput);
+                XcBarcodeScanner.setScanResultBroadcast(userInput, curKey);
+                notifyConfigChanged(DefaultOptions.KEY_CUSTOM_BROADCAST_ACTION, userInput);
+            }
+        });
     }
 
     /**
@@ -215,18 +219,14 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
     private void setBroadcastKeyDialog() {
         String curAction = mTvBroadcastAction.getText().toString();
         String curKey = mTvBroadcastKey.getText().toString();
-        AlertDialogUtils.showInputDialog(getActivity()
-                , getResources().getString(R.string.text_scan_result_data_key)
-                , curKey
-                , InputType.TYPE_CLASS_TEXT
-                , new AlertDialogUtils.OnInputDialogClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, String userInput) {
-                        mTvBroadcastKey.setText(userInput);
-                        XcBarcodeScanner.setScanResultBroadcast(curAction, userInput);
-                        notifyConfigChanged(DefaultOptions.KEY_CUSTOM_BROADCAST_KEY, userInput);
-                    }
-                });
+        AlertDialogUtils.showInputDialog(getActivity(), getResources().getString(R.string.text_scan_result_data_key), curKey, InputType.TYPE_CLASS_TEXT, new AlertDialogUtils.OnInputDialogClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, String userInput) {
+                mTvBroadcastKey.setText(userInput);
+                XcBarcodeScanner.setScanResultBroadcast(curAction, userInput);
+                notifyConfigChanged(DefaultOptions.KEY_CUSTOM_BROADCAST_KEY, userInput);
+            }
+        });
     }
 
     private void initView(View view) {
@@ -288,10 +288,15 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         mSwLeftScanEnable.setOnCheckedChangeListener(this);
         mSwLeftScanEnable.setChecked(DefaultOptions.DEFAULT_LEFT_SCAN_ENABLE_VAL);
 
-        // bo.li
         mUseAimidInResult = view.findViewById(R.id.pref_use_aimid_in_result);
         mUseAimidInResult.setOnCheckedChangeListener(this);
-        mUseAimidInResult.setChecked(XcBarcodeScanner.getUseAimidInResult());
+//        mUseAimidInResult.setChecked(XcBarcodeScanner.getUseAimidInResult());
+
+        mCharacterModifyEnable = view.findViewById(R.id.pref_character_modify_enable);
+        mCharacterModifyEnable.setOnCheckedChangeListener(this);
+
+        mCharacterCustomEnable = view.findViewById(R.id.pref_character_custom_enable);
+        mCharacterCustomEnable.setOnCheckedChangeListener(this);
 
         mSpPrefixChar = view.findViewById(R.id.sp_prefix_char);
         mSpSuffixChar = view.findViewById(R.id.sp_suffix_char);
@@ -307,6 +312,38 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         mBtnImport = view.findViewById(R.id.btn_import);
         mBtnExport.setOnClickListener(this);
         mBtnImport.setOnClickListener(this);
+
+        textCharacterModify = view.findViewById(R.id.text_character_modify);
+        textCharacterCustom = view.findViewById(R.id.text_character_custom);
+
+        // 设置按钮点击事件监听器
+        textCharacterModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String inputText = textCharacterModify.getText().toString();
+                if (inputText.isEmpty() || inputText.trim().length() > 1) {
+                    Toast.makeText(getContext(), R.string.text_character_failed, Toast.LENGTH_SHORT).show();
+                } else {
+                    XcBarcodeScanner.escapeSingleCharacterSettings(inputText);
+                    Toast.makeText(getContext(), R.string.pref_character_success, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        textCharacterCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String inputText = textCharacterCustom.getText().toString();
+                if (inputText.isEmpty()) {
+                    Toast.makeText(getContext(), R.string.text_character_failed, Toast.LENGTH_SHORT).show();
+                } else if ("".equals(inputText.trim()) || inputText.trim().length() > 5) {
+                    Toast.makeText(getContext(), R.string.pref_character_custom_failed, Toast.LENGTH_SHORT).show();
+                } else {
+                    XcBarcodeScanner.customConversionCharacters(inputText);
+                    Toast.makeText(getContext(), R.string.pref_character_success, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private int getSpPositionFromDefVal(int id, String defVal) {

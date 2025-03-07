@@ -259,9 +259,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 // If loop scan enabled, not need process ACTION_UP event.
             } else {
                 // Stop scanning action
-                if (XcBarcodeScanner.getScanTriggerMode().equals(ScanTriggerMode.STOP_ON_RELEASE)) {
-                    XcBarcodeScanner.stopScan();
-                }
+//                if (XcBarcodeScanner.getScanTriggerMode().equals(ScanTriggerMode.STOP_ON_RELEASE)) {
+//                    XcBarcodeScanner.stopScan();
+//                }
             }
             return true;
         }
