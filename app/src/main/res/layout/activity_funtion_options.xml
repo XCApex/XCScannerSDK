@@ -362,6 +362,38 @@
             style="@style/OptionItemSwitchStyle"
             android:text="@string/setting_use_aimid_in_result" />
 
+        <!-- 字符转义选项 -->
+        <!--Character escape option-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/character_modify_title" />
+
+        <Switch
+            android:id="@+id/pref_character_modify_enable"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/character_modify_enable" />
+
+        <EditText
+            android:id="@+id/text_character_modify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/character_gs_fnc1_0x1d"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <Switch
+            android:id="@+id/pref_character_custom_enable"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/pref_character_custom_enable" />
+
+        <EditText
+            android:id="@+id/text_character_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/pref_character_custom"
+            android:inputType="text" />
+
+
         <!-- 配置管理 -->
         <!--configuration management-->
         <TextView

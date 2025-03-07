@@ -128,4 +128,13 @@
 
     <string name="pref_setting_debug_title">调试选项</string>
     <string name="setting_use_aimid_in_result">将AimID作为条码名称</string>
+
+    <string name="character_modify_title">字符转义选项</string>
+    <string name="character_modify_enable">支持转义</string>
+    <string name="character_gs_fnc1_0x1d">GS1 FNC1 (0x1D)</string>
+    <string name="pref_character_custom_enable">优先使用自定义转译字符</string>
+    <string name="pref_character_custom">自定义转译字符</string>
+    <string name="pref_character_success">设置成功</string>
+    <string name="text_character_failed">设置失败</string>
+    <string name="pref_character_custom_failed">设置失败：字符长度大于5</string>
 </resources>
