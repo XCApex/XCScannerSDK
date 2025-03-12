@@ -4,78 +4,76 @@
 # Change log
 
 
-| **Version** | **Date**   | **Changes**                                                           |
-| ----------- | ---------- | --------------------------------------------------------------------- |
-| 1.0.0       | 2023/02/03 | Basic scan result callback and settings.                              |
-| 1.0.3       | 2023/02/12 | Add API.                                                              |
-| 1.0.4       | 2023/02/27 | Add suspend and resume API.                                           |
-| 1.0.6       | 2023/03/09 | Add version info, loopscan, multibarcodes and precise scan about API. |
-| 1.0.7       | 2023/03/10 | Add API to support config aimer and illume light work mode.           |
-| 1.0.8       | 2023/03/13 | Fixed SDK version in docs.                                            |
-| 1.0.9       | 2023/03/14 | Add API to support license acive and license state query.             |
-| 1.1.0       | 2023/03/15 | Add API to support get scan service status.                           |
-| 1.1.2       | 2023/04/03 | Add API to support get the latest decode image.                       |
-| 1.1.3       | 2023/04/11 | Add API to support set suffix2 and prefix2.                           |
-
-# Config Maven
-
-> Config Maven
-
-```
-    maven {
-        allowInsecureProtocol = true
-        url "http://47.108.228.164:8081/nexus/service/local/repositories/releases/content/"
-    }
-```
-
-**Note:** maven is configuared in _build.gradle_ usually, but also may be in your _settings.gradle_.
-
-# Config Dependencies
-
-> Config your project build.gradle, as following example:
-
-```
-    implementation('com.xcheng:scanner:1.1.3')
-```
-
-It is  recommended to use the latest version of SDK.
+| **Version** | **Date**   | **Changes**                                                                                                               |
+|-------------|------------|---------------------------------------------------------------------------------------------------------------------------|
+| 1.0.0       | 2023/02/03 | Basic scan result callback and settings.                                                                                  |
+| 1.0.3       | 2023/02/12 | Add API.                                                                                                                  |
+| 1.0.4       | 2023/02/27 | Add suspend and resume API.                                                                                               |
+| 1.0.6       | 2023/03/09 | Add version info, loopscan, multibarcodes and precise scan about API.                                                     |
+| 1.0.7       | 2023/03/10 | Add API to support config aimer and illume light work mode.                                                               |
+| 1.0.8       | 2023/03/13 | Fixed SDK version in docs.                                                                                                |
+| 1.0.9       | 2023/03/14 | Add API to support license acive and license state query.                                                                 |
+| 1.1.0       | 2023/03/15 | Add API to support get scan service status.                                                                               |
+| 1.1.2       | 2023/04/03 | Add API to support get the latest decode image.                                                                           |
+| 1.1.3       | 2023/04/11 | Add API to support set suffix2 and prefix2.                                                                               |
+| 1.1.8       | 2025/03/07 | add API to support for escape, character Settings, preference for custom characters, and custom escape character Settings |
 
 # Basic function
 
 ## SDK initialize
 
-After init SDK, you can use scan function provided by scan service via APIs.
+After init SDK, you can use scan function provided by scan service via APIs.Currently, there are two ways to initialize SDK：
 
 ```java
-    XcBarcodeScanner.init(Context context, ScannerResult scannerResult)
+ XcBarcodeScanner.init(Context context, ScannerResult scannerResult)
+
+ XcBarcodeScanner.init(Context context, ScannerSymResult scannerSymResult)
 ```
 
-> Callback interface
+Callback interface：
 
 ```java
     public interface ScannerResult {
-        void onResult(String result);
+        void onResult(String result); 
+    }
+
+    public interface ScannerSymResult {
+        void onResult(String sym, String barCode);
     }
 ```
 
-After init SDK, your application will connect with scan service, and the scan result will be output via the _ScannerResult_ callback.
+After init SDK, your application will connect with scan service, and the scan result will be output via the ScannerResult/ScannerSymResult callback.
 
 Sample code:
 
 ```java
-                    XcBarcodeScanner.init(this, new ScannerResult() {
-                        @Override
-                        public void onResult(String result) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Log.d(TAG, "result: " + result);
-                                    TextView resultTextView = findViewById(R.id.textview_result);
-                                    resultTextView.setText(result);
-                                }
-                            });
-                        }
-                    });
+        XcBarcodeScanner.init(this, new ScannerResult() {
+            @Override
+            public void onResult(String result) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        allResult = allResult + "\n" + result;
+                        mTextResult.setText(allResult);
+                        scrollToBottom();
+                    }
+                });
+            }
+        });
+
+        XcBarcodeScanner.init(this, new ScannerSymResult() {
+            @Override
+            public void onResult(String sym, String barCode) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        allResult = allResult + "\n" + sym + ":" + barCode;
+                        mTextResult.setText(allResult);
+                        scrollToBottom();
+                    }
+                });
+            }
+        });
 ```
 
 ## SDK deinitialize
@@ -122,8 +120,7 @@ Use the following API to active license if needed.
     XcBarcodeScanner.activateLicense();
 ```
 
-After active license, it need about 1 or 2 minutes to process.
-We can use the API *getLicenseState* to query license status.
+After active license, it need about 1 or 2 minutes to process. We can use the API *getLicenseState* to query license status.
 
 **Note:** Active license need network connection.
 
@@ -199,6 +196,7 @@ All barcode types defined in the class BarcodeType.
         public static final String GS1_DATAMATRIX = "GS1DATAMATRIX";
         public static final String EAN8 = "EAN-8";
         public static final String EAN13 = "EAN-13";
+        // GS1 DataBar Omnidirectional (formerly GS1 DataBar-14)
         public static final String GS1_DATABAR = "GS1_DATABAR";
         public static final String HANXIN = "HANXIN";
         public static final String HK25 = "HK25";
@@ -226,7 +224,7 @@ Sample code:
 
 ```java
     XcBarcodeScanner.enableBarcodeType(BarcodeType.QRCODE, true); // Enable QRCode support.
-    XcBarcodeScanner.enableBarcodeType(BarcodeType.QRCODE, false);// Disable QRCode support.
+    XcBarcodeScanner.enableBarcodeType(BarcodeType.QRCODE, false); // Disable QRCode support.
 ```
 
 ## Check specific type of barcode support status
@@ -272,7 +270,7 @@ Use the following API to config type of notification when scan success.
     XcBarcodeScanner.setSuccessNotification(String notification);
 ```
 
-All types of notifications defined in the class  NotificationType.
+All types of notifications defined in the class NotificationType.
 
 ```java
     public class NotificationType {
@@ -422,8 +420,8 @@ Sample code:
 Use the following API to config suffix of barcode result.
 
 ```java
-    XcBarcodeScanner.setTextSuffix(String suffix);
-    XcBarcodeScanner.setTextSuffix2(String suffix2);
+    XcBarcodeScanner.setTextSuffix(String prefix);
+    XcBarcodeScanner.setTextSuffix2(String prefix2);
 ```
 
 Sample code:
@@ -439,13 +437,13 @@ Sample code:
 Use the following API to config interval of loopscan.
 
 ```java
-    setLoopScanInterval(int ms);
+setLoopScanInterval(int ms);
 ```
 
 Sample code:
 
 ```java
-    XcBarcodeScanner.setLoopScanInterval(100); // Config interval of loopscan as 100 ms.
+XcBarcodeScanner.setLoopScanInterval(100); // Config interval of loopscan as 100 ms.
 ```
 
 ## Get running status of loopscan
@@ -507,7 +505,7 @@ Sample code:
 
 Note: if the numberOfBarcodes been set to 1, it is single barcode mode, the fixedNumber option is meaningless.
 
-## Config region size of  barcode scan
+## Config region size of barcode scan
 
 Use the following API to config the region size of barcode scanning. the typical usage is 1D barcode precise scanning.
 
@@ -515,7 +513,7 @@ Use the following API to config the region size of barcode scanning. the typical
     void setScanRegionSize(int regionSize);
 ```
 
-All supported  region size defined in class RegionSizeType:
+All supported region size defined in class RegionSizeType:
 
 ```java
     public class RegionSizeType {
@@ -560,7 +558,7 @@ import com.tools.XCImage;
 
 public void getLastImage() {
     XCImage lastImg=XcBarcodeScanner.getLastDecodeImage();
-  
+    
     if(lastImg!=null){
         String infoStr="Witdh: "+lastImg.getWidth()+", Height: "+lastImg.getHeight()+", Stride: "+lastImg.getStride()+", size: "+lastImg.getData().length+" Bytes";
         showAlertDialog("Image Info:",infoStr,false,"OK",null);
@@ -568,4 +566,99 @@ public void getLastImage() {
         showAlertDialog("Image Info:","No image!",false,"OK",null);
     }
 }
+```
+
+## Set custom BroadcastReceiver
+
+Use the following API to configure the Action and Key for custom broadcasts. After successful configuration, the scan result can be received through the broadcast.
+
+```java
+void setScanResultBroadcast(String action, String resultKey);
+```
+
+Sample code:
+
+```java
+XcBarcodeScanner.setScanResultBroadcast("xxx.Action", "scanResultKey");
+```
+
+## Disable/Enable Scan button
+
+Due to differences in device design, the currently supported scanning buttons are: left side scanning button/right side scanning button/front scanning button/handheld handle scanning button. After disabling the scanning button function, pressing the scanning button will prevent scanning; After enabling the scanning button function, the button will restore the scanning function.
+
+```java
+void setFrontScanKeyEnable(boolean isEnable); // front scanning button
+
+void setLeftScanKeyEnable(boolean isEnable); // left side scanning button
+
+void setRightScanKeyEnable(boolean isEnable); // right side scanning button
+
+void setPoGoScanKeyEnable(boolean isEnable); // handheld handle scanning button
+```
+
+Sample code:
+
+```java
+XcBarcodeScanner.setFrontScanKeyEnable(false); // Disable front scanning button
+
+XcBarcodeScanner.setFrontScanKeyEnable(true); // Enable front scanning button
+```
+
+## Disable/Enable escape support
+
+Turn on or off the switch that supports escaping to escape GS1 FNC1(0X1D)
+
+```java
+void needModifyGsCharacter(boolean isEnable);
+```
+
+Sample code:
+
+```java
+XcBarcodeScanner.needModifyGsCharacter(true); 
+```
+
+
+## Set the target character to escape (single character)
+
+Set the target character to be escaped (single character)
+
+```java
+boolean escapeSingleCharacterSettings(String str);
+```
+
+Sample code:
+
+```java
+XcBarcodeScanner.escapeSingleCharacterSettings("a");
+XcBarcodeScanner.escapeSingleCharacterSettings("#"); 
+```
+
+## Disable/Enable preference for custom escape characters
+
+To turn on or off the preference for custom escape characters, GS1 FNC1(0X1D) can be escaped and replaced with a defined string
+
+```java
+void customEscapeCharacters(boolean isEnable);
+```
+
+Sample code:
+
+```java
+XcBarcodeScanner.customEscapeCharacters(true); 
+```
+
+## Set the target character to escape (up to five characters)
+
+Supports setting the target character to be escaped
+
+```java
+boolean customConversionCharacters(String str);
+```
+
+Sample code:
+
+```java
+XcBarcodeScanner.customConversionCharacters("abcde");
+XcBarcodeScanner.customConversionCharacters("12345"); 
 ```

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".pages.MainActivity">
+
+        <LinearLayout
+            android:id="@+id/layout_l1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_active_license"
+                android:layout_width="@dimen/use_weight"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/active_license"
+                android:textAllCaps="false" />
+
+            <ToggleButton
+                android:id="@+id/tb_scan_server_control"
+                android:layout_width="@dimen/use_weight"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:checked="false"
+                android:textAllCaps="false"
+                android:textOff="@string/suspend"
+                android:textOn="@string/resume" />
+
+            <Button
+                android:id="@+id/btn_get_last_img"
+                android:layout_width="@dimen/use_weight"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/get_last_image"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_l2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_below="@id/layout_l1"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/sp_scan_mode"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="@dimen/use_weight"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:entries="@array/scan_mode_entries" />
+
+            <Button
+                android:id="@+id/btn_scan"
+                android:layout_width="@dimen/use_weight"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/scan"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_l2"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorAccent"
+            android:fadeScrollbars="false"
+            android:scrollbars="vertical" />
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/option_page_paddingRL"
+        android:paddingRight="@dimen/option_page_paddingRL"
+        android:paddingBottom="@dimen/option_page_paddingB">
+
+        <!-- 控制选项-->
+        <!--Control options-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/pref_group_control_options_title" />
+
+        <!-- 扫码超时时间 -->
+        <!--Max scan time-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_scan_timeout" />
+
+            <Spinner
+                android:id="@+id/sp_timeout"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/scan_timeout_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 扫码触发模式 -->
+        <!--Scan trigger mode-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_scan_trigger_mode" />
+
+            <Spinner
+                android:id="@+id/sp_trigger_mode"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/scan_trigger_mode_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 条码数据输出模式 -->
+        <!--Barcode data output mode-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_data_receive_method" />
+
+            <Spinner
+                android:id="@+id/sp_data_receive_method"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/data_receive_method_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 多条码数量 -->
+        <!--MultiBarcodes limit-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_multibarcode_num" />
+
+            <Spinner
+                android:id="@+id/sp_multi_barcode_num"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/multibarcodes_number_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 固定的多条码数量 -->
+        <!--Fixed number of Barcodes-->
+        <Switch
+            android:id="@+id/sw_exactly_multi_num"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/text_multibarcode_exactly_num" />
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 扫码区域尺寸 -->
+        <!--Decode region size-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_scan_viewsize" />
+
+            <Spinner
+                android:id="@+id/sp_view_size"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/scan_viewsize_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 广播设置 -->
+        <!--Settings broadcast options-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/pref_broadcast_title" />
+
+        <!-- Action -->
+        <LinearLayout
+            android:id="@+id/ly_broadcast_action"
+            style="@style/OptionItemLinearVStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_scan_result_action" />
+
+            <TextView
+                android:id="@+id/tv_broadcast_action"
+                style="@style/OptionItemValueStyle" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- Key -->
+        <LinearLayout
+            android:id="@+id/ly_broadcast_key"
+            style="@style/OptionItemLinearVStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_scan_result_data_key" />
+
+            <TextView
+                android:id="@+id/tv_broadcast_key"
+                style="@style/OptionItemValueStyle" />
+        </LinearLayout>
+
+        <!-- 扫码提示 -->
+        <!--Scan notification-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/pref_scan_notification_title" />
+
+        <!-- 扫码成功提示音 -->
+        <!--Success notification-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_success_notification" />
+
+            <Spinner
+                android:id="@+id/sp_success_notification"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/scan_notification_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 扫码失败提示音 -->
+        <!--Fail notification-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_fail_notification" />
+
+            <Spinner
+                android:id="@+id/sp_fail_notification"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/scan_notification_entries" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_scan_notification_volume" />
+
+            <Spinner
+                android:id="@+id/scan_notification_volume"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/scan_notification_volume_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 指示灯 -->
+        <!--Notification LED enable-->
+        <Switch
+            android:id="@+id/sw_led_notification"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/text_notification_led_switch" />
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 灯光控制 -->
+        <!--Lights control-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/pref_flash_enable_title" />
+
+        <!-- 瞄准灯支持 -->
+        <!--Aiming light-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/aim_light_enable" />
+
+            <Spinner
+                android:id="@+id/sp_aim_enable"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/aim_lights_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 补光灯支持 -->
+        <!--Illuminating light-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/illume_light_enable" />
+
+            <Spinner
+                android:id="@+id/sp_illume_enable"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/illume_lights_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 闪光灯亮度 -->
+        <!--Strobe brightness-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/strobe_light_brightness" />
+
+            <Spinner
+                android:id="@+id/sp_brightness"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/strobe_brightness_entries" />
+        </LinearLayout>
+
+        <!-- 扫码键 -->
+        <!--Scan key options-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/pref_scankey_enable_title" />
+
+        <!-- 左扫码按键 -->
+        <!--Left scan button-->
+        <Switch
+            android:id="@+id/sw_left_scan_enable"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/text_left_scankey" />
+
+        <!-- 结果处理 -->
+        <!--Processing scan results-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/text_process_result" />
+
+        <!-- 前缀 -->
+        <!--prefix-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/prefix_char" />
+
+            <Spinner
+                android:id="@+id/sp_prefix_char"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/prefix_char_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 后缀 -->
+        <!--suffix-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/suffix_char" />
+
+            <Spinner
+                android:id="@+id/sp_suffix_char"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/suffix_char_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
+        <!-- 大小写 -->
+        <!--Letter case-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/letter_case" />
+
+            <Spinner
+                android:id="@+id/sp_letter_case"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/letter_case_entries" />
+        </LinearLayout>
+
+        <!-- 调试选项 -->
+        <!--Debug options-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/pref_setting_debug_title" />
+
+        <!-- 将AimID作为条码名称 -->
+        <!--Use AimID barcode type-->
+        <Switch
+            android:id="@+id/pref_use_aimid_in_result"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/setting_use_aimid_in_result" />
+
+        <!-- 字符转义选项 -->
+        <!--Character escape option-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/character_modify_title" />
+
+        <Switch
+            android:id="@+id/pref_character_modify_enable"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/character_modify_enable" />
+
+        <EditText
+            android:id="@+id/text_character_modify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/character_gs_fnc1_0x1d"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <Switch
+            android:id="@+id/pref_character_custom_enable"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/pref_character_custom_enable" />
+
+        <EditText
+            android:id="@+id/text_character_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/pref_character_custom"
+            android:inputType="text" />
+
+
+        <!-- 配置管理 -->
+        <!--configuration management-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/text_import_export" />
+
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <Button
+                android:id="@+id/btn_export"
+                android:layout_width="@dimen/use_weight"
+                android:layout_height="@dimen/option_item_height"
+                android:layout_weight="1"
+                android:text="@string/text_export"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_import"
+                android:layout_width="@dimen/use_weight"
+                android:layout_height="@dimen/option_item_height"
+                android:layout_weight="1"
+                android:text="@string/text_import"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

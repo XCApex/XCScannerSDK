@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="scan_mode_entries">
+        <item>Single scan mode</item>
+        <item>Loop Scan mode</item>
+    </string-array>
+
+    <string-array name="scan_timeout_entries">
+        <item>1 sec</item>
+        <item>2 secs</item>
+        <item>3 secs</item>
+        <item>4 secs</item>
+        <item>5 secs</item>
+        <item>6 secs</item>
+        <item>7 secs</item>
+        <item>8 secs</item>
+        <item>9 secs</item>
+    </string-array>
+
+    <integer-array name="scan_timeout_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </integer-array>
+
+    <string-array name="scan_trigger_mode_entries">
+        <item>Stop on release</item>
+        <item>Stop on timeout</item>
+    </string-array>
+
+    <string-array name="scan_trigger_mode_values" translatable="false">
+        <item>SYNC</item>
+        <item>TIMEOUT</item>
+    </string-array>
+
+    <string-array name="data_receive_method_entries">
+        <item>Cursor</item>
+        <item>Broadcast</item>
+        <item>Keyboard</item>
+        <item>Broadcast/Keyboard</item>
+        <item>Broadcast/Cursor</item>
+    </string-array>
+
+    <string-array name="data_receive_method_values" translatable="false">
+        <item>CLIPBOARD_EVENT</item>
+        <item>BROADCAST_EVENT</item>
+        <item>KEYBOARD_EVENT</item>
+        <item>BROADCAST_EVENT/KEYBOARD_EVENT</item>
+        <item>BROADCAST_EVENT/CLIPBOARD_EVENT</item>
+    </string-array>
+
+    <string-array name="multibarcodes_number_entries">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <integer-array name="multibarcodes_number_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="scan_viewsize_entries">
+        <item>4/4 frame size</item>
+        <item>3/4 frame size</item>
+        <item>2/4 frame size</item>
+        <item>1/4 frame size</item>
+        <item>1/8 frame size</item>
+        <item>1/16 frame size</item>
+        <item>1/32 frame size</item>
+        <item>1/64 frame size</item>
+        <item>Precise 1D region</item>
+    </string-array>
+
+    <integer-array name="scan_viewsize_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </integer-array>
+
+    <string-array name="scan_notification_entries">
+        <item>Mute</item>
+        <item>Sound</item>
+        <item>Vib</item>
+        <item>Sound/Vib</item>
+    </string-array>
+
+    <string-array name="scan_notification_values" translatable="false">
+        <item>Mute</item>
+        <item>Sound</item>
+        <item>Vib</item>
+        <item>Sound/Vib</item>
+    </string-array>
+
+    <string-array name="aim_lights_entries">
+        <item>Always off</item>
+        <item>On while scanning</item>
+        <item>Always on</item>
+    </string-array>
+
+    <integer-array name="aim_lights_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+
+    <string-array name="illume_lights_entries">
+        <item>Always off</item>
+        <item>Only illume</item>
+        <item>Illume and Strobe</item>
+    </string-array>
+
+    <integer-array name="illume_lights_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+
+    <string-array name="strobe_brightness_entries">
+        <item>Full brightness</item>
+        <item>Medium brightness</item>
+        <item>Weak brightness</item>
+        <item>Weakest brightness</item>
+    </string-array>
+
+    <integer-array name="strobe_brightness_values" translatable="false">
+        <item>4</item> <!--60%-->
+        <item>7</item> <!--50%-->
+        <item>5</item> <!--40%-->
+        <item>6</item> <!--30%-->
+    </integer-array>
+
+    <string-array name="prefix_char_entries" translatable="false">
+        <item>Empty</item>
+        <item>[</item>
+    </string-array>
+
+    <string-array name="suffix_char_entries" translatable="false">
+        <item>Empty</item>
+        <item>]</item>
+    </string-array>
+
+    <string-array name="letter_case_entries">
+        <item>None</item>
+        <item>Upper Case</item>
+        <item>Lower Case</item>
+    </string-array>
+
+    <string-array name="letter_case_values" translatable="false">
+        <item>NONE_CASE</item>
+        <item>UPPER_CASE</item>
+        <item>LOWER_CASE</item>
+    </string-array>
+
+    <string-array name="matrix25_check_digit_entries">
+        <item>Disable Check Digit</item>
+        <item>Enable Check Digit and Output</item>
+        <item>Enable Check Digit and No Output</item>
+    </string-array>
+
+    <string-array name="code39_check_digit_entries">
+        <item>Disable Check Digit</item>
+        <item>Enable Check Digit and No Output</item>
+        <item>Enable Check Digit and Output</item>
+    </string-array>
+
+    <string-array name="code39_check_digit_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="code11_check_digit_setting_entries">
+        <item>Two Check Digits Output</item>
+        <item>One Check Digit Output</item>
+        <item>Two Check Digits No Output</item>
+        <item>One Check Digit No Output</item>
+        <item>Disable Check Digit</item>
+    </string-array>
+
+    <string-array name="code11_check_digit_setting_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="codabar_check_digit_entries">
+        <item>Disable Check Digit</item>
+        <item>Enable Check Digit and No Output</item>
+        <item>Enable Check Digit and Output</item>
+    </string-array>
+
+    <string-array name="codabar_check_digit_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="check_I25_digit_entries">
+        <item>Disable Check Digit</item>
+        <item>Enable Check Digit and No Output</item>
+        <item>Enable Check Digit and Output</item>
+    </string-array>
+
+    <string-array name="check_I25_digit_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="msi_checksum_mode_entries">
+        <item>Disable</item>
+        <item>Mod 10 and output</item>
+        <item>Mod 10 without output</item>
+        <item>Mod 10/10 and output</item>
+        <item>Mod 10/10 without output</item>
+        <item>Mod 11/10 and output</item>
+        <item>Mod 11/10 without output</item>
+    </string-array>
+
+    <string-array name="msi_checksum_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+
+    <string-array name="scan_notification_volume_entries">
+        <item>0%</item>
+        <item>20%</item>
+        <item>40%</item>
+        <item>60%</item>
+        <item>80%</item>
+        <item>100%</item>
+    </string-array>
+
+    <string-array name="data_matrix_setting_entries" translatable="false">
+        <item>Standard Only </item>
+        <item>Inverse Mode</item>
+        <item>Auto Detection</item>
+    </string-array>
+
+    <string-array name="data_matrix_setting_value" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>

@@ -4,76 +4,76 @@
 # 修改记录
 
 
-| **版本号** | **日期**     | **内容**                      |
-|---------|------------|-----------------------------|
-| 1.0.0   | 2023/02/03 | 实现基本的扫码结果回调以及参数设置           |
-| 1.0.3   | 2023/02/12 | 增加更多的扫码控制及配置接口。             |
-| 1.0.4   | 2023/02/27 | 增加扫码服务的暂停和继续                |
-| 1.0.6   | 2023/03/09 | 支持版本信息、连续扫码、多条码支持及精确扫码相关接口。 |
-| 1.0.7   | 2023/03/10 | 支持瞄准灯和补光灯控制接口。              |
-| 1.0.8   | 2023/03/13 | 修订文档中的sdk版本号.               |
-| 1.0.9   | 2023/03/14 | 增加支持授权激活及授权状态查询的API。        |
-| 1.1.0   | 2023/03/15 | 增加接口用于查询扫码服务的挂起状态。          |
-| 1.1.2   | 2023/04/03 | 增加接口用于获取最后一张解码图片。           |
-| 1.1.3   | 2023/04/11 | 增加接口用于设置扫码输出的第二个前缀及后缀参数。    |
-
-# 配置Maven仓库
-
-> 配置Maven仓库
-
-```
-    maven {
-        allowInsecureProtocol = true
-        url "http://47.108.228.164:8081/nexus/service/local/repositories/releases/content/"
-    }
-```
-
-**注意**：maven仓库的添加一般在在工程的build.gradle里面，也有的可能在settings.gradle里面
-
-# 配置依赖
-
-> 配置依赖的SDK，注意使用最新版本
-
-```
-    implementation('com.xcheng:scanner:1.1.3')
-```
+| **版本号** | **日期**     | **内容**                          |
+|---------|------------|---------------------------------|
+| 1.0.0   | 2023/02/03 | 实现基本的扫码结果回调以及参数设置               |
+| 1.0.3   | 2023/02/12 | 增加更多的扫码控制及配置接口。                 |
+| 1.0.4   | 2023/02/27 | 增加扫码服务的暂停和继续                    |
+| 1.0.6   | 2023/03/09 | 支持版本信息、连续扫码、多条码支持及精确扫码相关接口。     |
+| 1.0.7   | 2023/03/10 | 支持瞄准灯和补光灯控制接口。                  |
+| 1.0.8   | 2023/03/13 | 修订文档中的sdk版本号.                   |
+| 1.0.9   | 2023/03/14 | 增加支持授权激活及授权状态查询的API。            |
+| 1.1.0   | 2023/03/15 | 增加接口用于查询扫码服务的挂起状态。              |
+| 1.1.2   | 2023/04/03 | 增加接口用于获取最后一张解码图片。               |
+| 1.1.3   | 2023/04/11 | 增加接口用于设置扫码输出的第二个前缀及后缀参数。        |
+| 1.1.8   | 2025/03/07 | 增加支持转义、字符设置、优先使用自定义字符、自定义转义字符设置 |
 
 # 功能使用
 
 ## SDK初始化
 
-最简单的情况下SDK初始化后，就可以使用扫码服务。
+最简单的情况下SDK初始化后，就可以使用扫码服务。目前提供两种初始化方式：
 
 ```java
-    XcBarcodeScanner.init(Context context, ScannerResult scannerResult)
+ XcBarcodeScanner.init(Context context, ScannerResult scannerResult)
+
+ XcBarcodeScanner.init(Context context, ScannerSymResult scannerSymResult)
 ```
 
-> 回调类
+回调类：
 
 ```java
     public interface ScannerResult {
-        void onResult(String result);
+        void onResult(String result); // 仅返回条码结果
+    }
+
+    public interface ScannerSymResult {
+        void onResult(String sym, String barCode); // 返回条码结果和条码类型
     }
 ```
 
-扫码SDK初始化后，就和系统的扫码服务建立了连接，此时扫码结果会通过ScannerResult回调通知回来。
+扫码SDK初始化后，就和系统的扫码服务建立了连接，此时扫码结果会通过ScannerResult/ScannerSymResult回调通知回来。
 
 示例代码：
 
 ```java
-                    XcBarcodeScanner.init(this, new ScannerResult() {
-                        @Override
-                        public void onResult(String result) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Log.d(TAG, "result: " + result);
-                                    TextView resultTextView = findViewById(R.id.textview_result);
-                                    resultTextView.setText(result);
-                                }
-                            });
-                        }
-                    });
+        XcBarcodeScanner.init(this, new ScannerResult() {
+            @Override
+            public void onResult(String result) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        allResult = allResult + "\n" + result;
+                        mTextResult.setText(allResult);
+                        scrollToBottom();
+                    }
+                });
+            }
+        });
+
+        XcBarcodeScanner.init(this, new ScannerSymResult() {
+            @Override
+            public void onResult(String sym, String barCode) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        allResult = allResult + "\n" + sym + ":" + barCode;
+                        mTextResult.setText(allResult);
+                        scrollToBottom();
+                    }
+                });
+            }
+        });
 ```
 
 ## SDK反初始化
@@ -195,6 +195,7 @@
         public static final String GS1_DATAMATRIX = "GS1DATAMATRIX";
         public static final String EAN8 = "EAN-8";
         public static final String EAN13 = "EAN-13";
+        // GS1 DataBar（前身为 GS1 DataBar-14）
         public static final String GS1_DATABAR = "GS1_DATABAR";
         public static final String HANXIN = "HANXIN";
         public static final String HK25 = "HK25";
@@ -567,4 +568,99 @@ public void getLastImage() {
         showAlertDialog("Image Info:","No image!",false,"OK",null);
     }
 }
+```
+
+## 设置自定义广播
+
+将自定义广播的Action和接受扫码结果的Key通过该接口配置好后，就可以通过广播接收到扫码结果了。
+
+```java
+void setScanResultBroadcast(String action, String resultKey);
+```
+
+使用示例：
+
+```java
+XcBarcodeScanner.setScanResultBroadcast("xxx.Action", "scanResultKey");
+```
+
+## 禁用/启用扫码快捷按键
+
+根据设备设计不同，目前所支持的快捷键有：左侧边扫码键/右侧边扫码键/正面扫码键/手持柄扫码键。针对不同的快捷键，提供了对应的禁用/启用扫码功能接口。禁用后，按下扫码按键将无法扫码；启用后，按键恢复扫码功能。
+
+```java
+void setFrontScanKeyEnable(boolean isEnable); //正面扫码按键
+
+void setLeftScanKeyEnable(boolean isEnable); //左侧边扫码键
+
+void setRightScanKeyEnable(boolean isEnable); //右侧边扫码键
+
+void setPoGoScanKeyEnable(boolean isEnable); //手持柄扫码键
+```
+
+使用示例：
+
+```java
+XcBarcodeScanner.setFrontScanKeyEnable(false); //禁用正面扫码按键扫码功能
+
+XcBarcodeScanner.setFrontScanKeyEnable(true); //启用正面扫码按键扫码功能
+```
+
+## 禁用/启用支持转义
+
+打开或关闭支持转义的开关，可以对GS1 FNC1(0X1D)进行转义
+
+```java
+void needModifyGsCharacter(boolean isEnable);
+```
+
+使用示例：
+
+```java
+XcBarcodeScanner.needModifyGsCharacter(true); 
+```
+
+
+## 设置转义的目标字符（单字符）
+
+设置需要转义的目标字符（单字符）
+
+```java
+boolean escapeSingleCharacterSettings(String str);
+```
+
+使用示例：
+
+```java
+XcBarcodeScanner.escapeSingleCharacterSettings("a");
+XcBarcodeScanner.escapeSingleCharacterSettings("#"); 
+```
+
+## 禁用/启用优先使用自定义转义字符
+
+打开或关闭优先使用自定义转义字符的开关，可以对GS1 FNC1(0X1D)进行转义，且替换为所定义的字符串
+
+```java
+void customEscapeCharacters(boolean isEnable);
+```
+
+使用示例：
+
+```java
+XcBarcodeScanner.customEscapeCharacters(true); 
+```
+
+## 设置转义的目标字符（最多五个字符）
+
+支持设置需要转义的目标字符
+
+```java
+boolean customConversionCharacters(String str);
+```
+
+使用示例：
+
+```java
+XcBarcodeScanner.customConversionCharacters("abcde");
+XcBarcodeScanner.customConversionCharacters("12345"); 
 ```

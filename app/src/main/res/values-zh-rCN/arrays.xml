@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="scan_mode_entries">
+        <item>单次扫码模式</item>
+        <item>连续扫码模式</item>
+    </string-array>
+
+    <string-array name="scan_timeout_entries">
+        <item>1 秒</item>
+        <item>2 秒</item>
+        <item>3 秒</item>
+        <item>4 秒</item>
+        <item>5 秒</item>
+        <item>6 秒</item>
+        <item>7 秒</item>
+        <item>8 秒</item>
+        <item>9 秒</item>
+    </string-array>
+
+    <integer-array name="scan_timeout_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </integer-array>
+
+    <string-array name="scan_trigger_mode_entries">
+        <item>按键弹起时停止</item>
+        <item>超时后停止</item>
+    </string-array>
+
+    <string-array name="scan_trigger_mode_values" translatable="false">
+        <item>SYNC</item>
+        <item>TIMEOUT</item>
+    </string-array>
+
+    <string-array name="data_receive_method_entries">
+        <item>输入框</item>
+        <item>广播</item>
+        <item>模拟按键输出</item>
+        <item>广播和按键</item>
+        <item>广播和输入框</item>
+    </string-array>
+
+    <string-array name="data_receive_method_values" translatable="false">
+        <item>CLIPBOARD_EVENT</item>
+        <item>BROADCAST_EVENT</item>
+        <item>KEYBOARD_EVENT</item>
+        <item>BROADCAST_EVENT/KEYBOARD_EVENT</item>
+        <item>BROADCAST_EVENT/CLIPBOARD_EVENT</item>
+    </string-array>
+
+    <string-array name="multibarcodes_number_entries">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <integer-array name="multibarcodes_number_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+
+    <string-array name="scan_viewsize_entries">
+        <item>4/4 画幅</item>
+        <item>3/4 画幅</item>
+        <item>2/4 画幅</item>
+        <item>1/4 画幅</item>
+        <item>1/8 画幅</item>
+        <item>1/16 画幅</item>
+        <item>1/32 画幅</item>
+        <item>1/64 画幅</item>
+        <item>精准一维码区域</item>
+    </string-array>
+
+    <integer-array name="scan_viewsize_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </integer-array>
+
+    <string-array name="scan_notification_entries">
+        <item>无</item>
+        <item>声音提示</item>
+        <item>振动提示</item>
+        <item>声音和振动提示</item>
+    </string-array>
+
+    <string-array name="scan_notification_values" translatable="false">
+        <item>Mute</item>
+        <item>Sound</item>
+        <item>Vib</item>
+        <item>Sound/Vib</item>
+    </string-array>
+
+    <string-array name="aim_lights_entries">
+        <item>一直关闭</item>
+        <item>扫码时开启</item>
+        <item>一直开启</item>
+    </string-array>
+
+    <integer-array name="aim_lights_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+
+    <string-array name="illume_lights_entries">
+        <item>一直关闭</item>
+        <item>仅补光</item>
+        <item>补光和闪光</item>
+    </string-array>
+
+    <integer-array name="illume_lights_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+
+    <string-array name="strobe_brightness_entries">
+        <item>最大亮度</item>
+        <item>中亮度</item>
+        <item>弱亮度</item>
+        <item>最弱亮度</item>
+    </string-array>
+
+    <integer-array name="strobe_brightness_values" translatable="false">
+        <item>4</item> <!--60%-->
+        <item>7</item> <!--50%-->
+        <item>5</item> <!--40%-->
+        <item>6</item> <!--30%-->
+    </integer-array>
+
+    <string-array name="prefix_char_entries" translatable="false">
+        <item>Empty</item>
+        <item>[</item>
+    </string-array>
+
+    <string-array name="suffix_char_entries" translatable="false">
+        <item>Empty</item>
+        <item>]</item>
+    </string-array>
+
+    <string-array name="letter_case_entries">
+        <item>不转换</item>
+        <item>大写转换</item>
+        <item>小写转换</item>
+    </string-array>
+
+    <string-array name="letter_case_values" translatable="false">
+        <item>NONE_CASE</item>
+        <item>UPPER_CASE</item>
+        <item>LOWER_CASE</item>
+    </string-array>
+
+    <string-array name="matrix25_check_digit_entries">
+        <item>关闭校验</item>
+        <item>开启校验并输出</item>
+        <item>开启校验不输出</item>
+    </string-array>
+
+    <string-array name="code39_check_digit_entries">
+        <item>关闭校验</item>
+        <item>开启校验不输出</item>
+        <item>开启校验并输出</item>
+    </string-array>
+
+    <string-array name="code39_check_digit_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="code11_check_digit_setting_entries">
+        <item>校验两位并输出校验码</item>
+        <item>校验一位并输出校验码</item>
+        <item>校验两位不输出校验码</item>
+        <item>校验一位不输出校验码</item>
+        <item>不校验</item>
+    </string-array>
+
+    <string-array name="code11_check_digit_setting_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="codabar_check_digit_entries">
+        <item>关闭校验</item>
+        <item>开启校验不输出</item>
+        <item>开启校验并输出</item>
+    </string-array>
+
+    <string-array name="codabar_check_digit_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="check_I25_digit_entries">
+        <item>不校验</item>
+        <item>校验但不输出校验码</item>
+        <item>校验并输出校验码</item>
+    </string-array>
+
+    <string-array name="check_I25_digit_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="msi_checksum_mode_entries">
+        <item>关闭</item>
+        <item>模式10并输出</item>
+        <item>模式10但不输出</item>
+        <item>模式10/10并输出</item>
+        <item>模式10/10但不输出</item>
+        <item>模式11/10并输出</item>
+        <item>模式11/10但不输出</item>
+    </string-array>
+
+    <string-array name="msi_checksum_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="scan_notification_volume_entries">
+        <item>0%</item>
+        <item>20%</item>
+        <item>40%</item>
+        <item>60%</item>
+        <item>80%</item>
+        <item>100%</item>
+    </string-array>
+
+    <string-array name="data_matrix_setting_entries" translatable="false">
+        <item>仅标准码</item>
+        <item>仅反色码</item>
+        <item>全部开启</item>
+    </string-array>
+
+    <string-array name="data_matrix_setting_value" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>

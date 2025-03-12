@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="use_weight">0dp</dimen>
+    <dimen name="btn_height">55dp</dimen>
+    <dimen name="picture_dialog_layout_height">300dp</dimen>
+    <dimen name="option_page_paddingRL">10dp</dimen>
+    <dimen name="option_page_paddingB">30dp</dimen>
+    <dimen name="option_item_height">52dp</dimen>
+    <dimen name="option_title_paddingT">15dp</dimen>
+    <dimen name="option_title_paddingB">5dp</dimen>
+    <dimen name="option_item_vertical_paddingTB">15dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="spinner_paddingR">15dp</dimen>
+    <dimen name="spinner_paddingL">0dp</dimen>
+
+    <dimen name="common_5">5dp</dimen>
+
+    <dimen name="option_title_ts">14sp</dimen>
+    <dimen name="common_ts">16sp</dimen>
+</resources>
