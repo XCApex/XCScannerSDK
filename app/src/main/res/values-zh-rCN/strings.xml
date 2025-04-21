@@ -128,4 +128,10 @@
 
     <string name="pref_setting_debug_title">调试选项</string>
     <string name="setting_use_aimid_in_result">将AimID作为条码名称</string>
+    <string name="whitelist_flag">白名单</string>
+    <string name="whitelist_open">开启白名单</string>
+    <string name="whitelist_close">关闭白名单</string>
+    <string name="whitelist_add">添加白名单</string>
+    <string name="whitelist_del">删除白名单</string>
+    <string name="whitelist_get">获取白名单</string>
 </resources>

@@ -95,8 +95,8 @@ public class BarcodeOptionsFragment extends BaseFragment {
         bindingView.etOutputMaxLength.setText(String.valueOf(outputMaxLength));*/
         int dataMatrixMaxLength = XcBarcodeScanner.getDecoderTagValue(XCBarcodeTag.TAG_DATAMATRIX_MAX_LENGTH);
         bindingView.etMaxLength.setText(String.valueOf(dataMatrixMaxLength));
-        int matrixMode = XcBarcodeScanner.getDataMatrixMode();
-        bindingView.prefDataMatrixSetting.setSelection(matrixMode);
+//        int matrixMode = XcBarcodeScanner.getDataMatrixMode();
+//        bindingView.prefDataMatrixSetting.setSelection(matrixMode);
 
         // EAN8
         int ean8Checksum = XcBarcodeScanner.getDecoderTagValue(XCBarcodeTag.TAG_EAN8_CHECK_DIGIT_TRANSMIT);
@@ -281,8 +281,8 @@ public class BarcodeOptionsFragment extends BaseFragment {
             XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_I25_CHECK_DIGIT_MODE, position);
         } else if (parent.getId() == R.id.sp_msi_check_digit) {
             XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_MSI_CHECK_DIGIT_MODE, position);
-        }  else if (parent.getId() == R.id.pref_data_matrix_setting) {
-            XcBarcodeScanner.setDataMatrixMode(position);
+//        }  else if (parent.getId() == R.id.pref_data_matrix_setting) {
+//            XcBarcodeScanner.setDataMatrixMode(position);
         }
     }
 

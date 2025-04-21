@@ -361,6 +361,65 @@
             android:id="@+id/pref_use_aimid_in_result"
             style="@style/OptionItemSwitchStyle"
             android:text="@string/setting_use_aimid_in_result" />
+        <!--白名单 start-->
+        <Switch
+            android:id="@+id/pref_whitelist"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/whitelist_open" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/text_whitelist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:gravity="center"
+                android:text="@string/whitelist_flag" />
+            <EditText
+                android:id="@+id/et_whitelist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+<!--            <Button-->
+<!--                android:id="@+id/button_whitelist"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="0.24"-->
+<!--                android:text="@string/whitelist_open"-->
+<!--                android:textAllCaps="false" />-->
+
+            <Button
+                android:id="@+id/button_add_whitelist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="@string/whitelist_add"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/button_del_whitelist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="@string/whitelist_del"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/button_get_whitelist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="@string/whitelist_get"
+                android:textAllCaps="false" />
+        </LinearLayout>
+        <!--白名单 end-->
 
         <!-- 配置管理 -->
         <!--configuration management-->

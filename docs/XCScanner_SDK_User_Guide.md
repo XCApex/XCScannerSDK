@@ -4,28 +4,30 @@
 # Change log
 
 
-| **Version** | **Date**   | **Changes**                                                                                                                                                                                     |
-|-------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.0.0       | 2023/02/03 | Basic scan result callback and settings.                                                                                                                                                        |
-| 1.0.3       | 2023/02/12 | Add API.                                                                                                                                                                                        |
-| 1.0.4       | 2023/02/27 | Add suspend and resume API.                                                                                                                                                                     |
-| 1.0.6       | 2023/03/09 | Add version info, loopscan, multibarcodes and precise scan about API.                                                                                                                           |
-| 1.0.7       | 2023/03/10 | Add API to support config aimer and illume light work mode.                                                                                                                                     |
-| 1.0.8       | 2023/03/13 | Fixed SDK version in docs.                                                                                                                                                                      |
-| 1.0.9       | 2023/03/14 | Add API to support license acive and license state query.                                                                                                                                       |
-| 1.1.0       | 2023/03/15 | Add API to support get scan service status.                                                                                                                                                     |
-| 1.1.2       | 2023/04/03 | Add API to support get the latest decode image.                                                                                                                                                 |
-| 1.1.3       | 2023/04/11 | Add API to support set suffix2 and prefix2.                                                                                                                                                     |
+| **Version** | **Date**   | **Changes**                                                  |
+| ----------- | ---------- | ------------------------------------------------------------ |
+| 1.0.0       | 2023/02/03 | Basic scan result callback and settings.                     |
+| 1.0.3       | 2023/02/12 | Add API.                                                     |
+| 1.0.4       | 2023/02/27 | Add suspend and resume API.                                  |
+| 1.0.6       | 2023/03/09 | Add version info, loopscan, multibarcodes and precise scan about API. |
+| 1.0.7       | 2023/03/10 | Add API to support config aimer and illume light work mode.  |
+| 1.0.8       | 2023/03/13 | Fixed SDK version in docs.                                   |
+| 1.0.9       | 2023/03/14 | Add API to support license acive and license state query.    |
+| 1.1.0       | 2023/03/15 | Add API to support get scan service status.                  |
+| 1.1.2       | 2023/04/03 | Add API to support get the latest decode image.              |
+| 1.1.3       | 2023/04/11 | Add API to support set suffix2 and prefix2.                  |
 | 1.1.8       | 2024/05/16 | Add API to support set custom BroadcastReceiver, Disable/Enable Scan button, Export/Import configuration file, Configure barcode output failure event notification, Configure flash brightness. |
-| 1.1.9       | 2024/08/26 | Add API to support set/get properties for the EAN13/Matrix25/UPCA symbology                                                                                                                     |
-| 1.1.10      | 2024/09/24 | Add API to support set/get properties for the scan trigger mode.                                                                                                                                |
-| 1.1.11      | 2024/10/10 | Add API to support set/get properties for the Code39/DATAMATRIX/EAN8 symbology                                                                                                                  |
-| 1.1.12      | 2024/10/17 | Add API to support set/get properties for the code11/coded49/code93/code128/codeabar symbology                                                                                                  |
-| 1.1.13      | 2024/10/18 | Add API to support set/get properties for the GS1-128/GS1-DATABAR/ITF25/MSI/QRCode/UPCE symbology                                                                                               |
-| 1.1.14      | 2024/11/21 | Add API to set the prompt tone interface for code scanning                                                                                                                                      |
-| 1.1.15      | 2024/12/10 | Add API to Datamatrix code system can be switched and controlled separately.                                                                                                                    |
-| 1.1.16      | 2024/12/13 | Add Datamatrix and QrCode maximum length function to replace the maximum output length function.                                                                                                | |   
-| 1.1.17      | 2025/01/23 | Add API to Use AimID barcode type switch interface.                               |
+| 1.1.9       | 2024/08/26 | Add API to support set/get properties for the EAN13/Matrix25/UPCA symbology |
+| 1.1.10      | 2024/09/24 | Add API to support set/get properties for the scan trigger mode. |
+| 1.1.11      | 2024/10/10 | Add API to support set/get properties for the Code39/DATAMATRIX/EAN8 symbology |
+| 1.1.12      | 2024/10/17 | Add API to support set/get properties for the code11/coded49/code93/code128/codeabar symbology |
+| 1.1.13      | 2024/10/18 | Add API to support set/get properties for the GS1-128/GS1-DATABAR/ITF25/MSI/QRCode/UPCE symbology |
+| 1.1.14      | 2024/11/21 | Add API to set the prompt tone interface for code scanning   |
+| 1.1.15      | 2024/12/10 | Add API to Datamatrix code system can be switched and controlled separately. |
+| 1.1.16      | 2024/12/13 | Add Datamatrix and QrCode maximum length function to replace the maximum output length function. |
+| 1.1.17      | 2025/01/23 | Add API to Use AimID barcode type switch interface.          |
+| 1.1.18      | 2025/02/26 | Add API to Set Pass Scan Key Value Status                    |
+| 1.3.49.0.13 | 2025/04/17 | Add API to get/set Scan White list Status, get/config Scan White list |
 
 # Basic function
 
@@ -132,6 +134,22 @@ Use the following API to active license if needed.
 After active license, it need about 1 or 2 minutes to process. We can use the API *getLicenseState* to query license status.
 
 **Note:** Active license need network connection.
+
+
+
+## Reactivate license
+
+Use the following API to reactivate license if needed.
+
+```java
+    XcBarcodeScanner.forceNetWorkActivate();
+```
+
+After active license, it need about 1 or 2 minutes to process. We can use the API *getLicenseState* to query license status.
+
+**Note:** Active license need network connection.
+
+
 
 ## Start/Stop scanning
 
@@ -646,6 +664,37 @@ String fileName = "Scanner";   // The file name cannot contain type suffix
 String importPath = Environment.getExternalStorageDirectory().getPath() + "/Scanner.xml";
 XcBarcodeScanner.importSettingsByProfileName(fileName, importPath);
 ```
+
+## Config Settings
+
+Use the following API to import、export or reset settings.
+
+```java
+    void loadSettings();//import settings
+    void saveSettings();//export settings
+    void resetSettings();//reset settings
+```
+
+
+
+## Config DataMatrix
+
+Use the following API to config DataMatrix settings.
+
+```java
+   void setDataMatrixWithSeparators(boolean withSeparators);// Set whether to display separators
+   void setDataMatrixMaxOutputLength(int maxLength);//set Max out length (0:no limit)
+```
+
+Sample code：
+
+```java
+    XcBarcodeScanner.setDataMatrixWithSeparators(true); //set to display separators
+    
+    XcBarcodeScanner.setDataMatrixMaxOutputLength(2); // set the max out lenght to 2
+```
+
+
 
 ## Configure barcode output failure event notification
 
@@ -1233,44 +1282,101 @@ void setScanVolume(float volume)
 ```
 
 
-## Sets and gets the subtype to which the Datamatrix code system is currently applied
 
-This interface allows you to set the current type of Datamatrix code system (standard code only, reverse color code only, all enabled).
+## Get Show AimID Status
 
+Use the following API to get if show Aimid in scan result.
+
+```java
+boolean getUseAimidInResult();
 ```
-<string-array name="matrix_mode_array" translatable="false">
-    <item>Standard Only </item>
-    <item>Inverted Only</item>
-    <item>Auto Detection</item>
-</string-array>
 
 
-<string-array name="matrix_mode_value" translatable="false">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-</string-array>
 
-// Get the code system of type DataMatrix
-int getDataMatrixMode();
+## Set Show AimID Status
 
-// Example Set the DataMatrix code
-// Supported parameters: 0: standard code only, 1: reverse color code only, 2: all enabled
-void setDataMatrixMode(int trye);
+Use the following API to set if show Aimid in scan result.
+
+```java
+void setUseAimidInResult(boolean isEnable);
 ```
 
 Sample code:
 
 ```
-int matrixMode = XcBarcodeScanner.getDataMatrixMode();
-
-XcBarcodeScanner.setDataMatrixMode(position);
+//close show aimId in scan result
+if(getUseAimidInResult()){
+	XcBarcodeScanner.setUseAimidInResult(false);
+}
 ```
 
-## Set AimID to be turned on or off as the bar code name
+## Set Pass Scan Key Value Status
 
-Supported parameters: true/false
+Use the following API to set pass scan key value status.
 
 ```java
-void setUseAimidInResult(boolean isEnable);
+ void setTransmitKeyEvent(boolean isEnable);
 ```
+
+Sample code:
+
+```
+//close pass scan key value 
+XcBarcodeScanner.setTransmitKeyEvent(false);
+
+```
+
+## Get Scan White list Status
+
+Use the following API to get scan white list status.
+
+```java
+boolean isScanWhiteListEnable();
+```
+
+
+
+## Set Scan White list Status
+
+Use the following API to set scan white list status.
+
+```java
+void setScanWhiteListEnable(boolean isEnable);
+```
+
+Sample code:
+
+```
+//close scan white list 
+if(isScanWhiteListEnable()){
+	XcBarcodeScanner.setScanWhiteListEnable(false);
+}
+```
+
+## Get Scan White list
+
+Use the following API to get scan white list packagenames.
+
+```java
+String getScanWhiteListPkgs();
+```
+
+## Config Scan White list
+
+Use the following API to config scan white list.
+
+```java
+ void addScanWhiteListPkgs(String whiteList);//add scan white list
+ void delScanWhiteListPkgs(String whiteList);//del scan white list
+```
+
+Sample code:
+
+```
+//add "com.android.launcher3" and "com.android.deskclock"to scan white list
+XcBarcodeScanner.addScanWhiteListPkgs("com.android.launcher3,com.android.deskclock");
+//del "com.android.launcher3" from scan white list
+XcBarcodeScanner.delScanWhiteListPkgs("com.android.launcher3");
+
+```
+

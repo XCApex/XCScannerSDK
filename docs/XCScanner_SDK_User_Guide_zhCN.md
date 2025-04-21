@@ -4,28 +4,30 @@
 # 修改记录
 
 
-| **版本号** | **日期**     | **内容**                                                     |
-|---------|------------|------------------------------------------------------------|
-| 1.0.0   | 2023/02/03 | 实现基本的扫码结果回调以及参数设置                                          |
-| 1.0.3   | 2023/02/12 | 增加更多的扫码控制及配置接口。                                            |
-| 1.0.4   | 2023/02/27 | 增加扫码服务的暂停和继续                                               |
-| 1.0.6   | 2023/03/09 | 支持版本信息、连续扫码、多条码支持及精确扫码相关接口。                                |
-| 1.0.7   | 2023/03/10 | 支持瞄准灯和补光灯控制接口。                                             |
-| 1.0.8   | 2023/03/13 | 修订文档中的sdk版本号.                                              |
-| 1.0.9   | 2023/03/14 | 增加支持授权激活及授权状态查询的API。                                       |
-| 1.1.0   | 2023/03/15 | 增加接口用于查询扫码服务的挂起状态。                                         |
-| 1.1.2   | 2023/04/03 | 增加接口用于获取最后一张解码图片。                                          |
-| 1.1.3   | 2023/04/11 | 增加接口用于设置扫码输出的第二个前缀及后缀参数。                                   |
-| 1.1.8   | 2024/05/16 | 增加自定义广播、返回条码类型结果的回调、扫码失败提示音、闪光灯亮度、禁用/启用扫码快捷按键、导出/导入配置文件接口。 |
-| 1.1.9   | 2024/08/26 | 增加获取/配置EAN13、Matrix25、UPCA条码属性接口。                          |
-| 1.1.10  | 2024/09/24 | 增加获取/配置扫码触发模式接口。                                           |
-| 1.1.11  | 2024/10/10 | 增加获取/配置Code39、DATAMATRIX、EAN8条码属性接口。                       |
-| 1.1.12  | 2024/10/17 | 增加获取/配置code11、coded49、code93、code128、codeabar条码属性接口。       |
-| 1.1.13  | 2024/10/18 | 增加获取/配置GS1-128、GS1-DATABAR、ITF25、MSI、QRCode、UPCE条码属性接口。    |
-| 1.1.14  | 2024/11/21 | 增加设置扫码提示音接口。                                               |
-| 1.1.15  | 2024/12/10 | 增加Datamatrix码制可以切换和单独控制。                                   |
-| 1.1.16  | 2024/12/13 | 增加Datamatrix和QrCode码制最大长度功能来替换最大输出长度功能                     |
-| 1.1.17  | 2025/01/23 | 增加将AimID作为条码名称的开关接口                                        |
+| **版本号**  | **日期**   | **内容**                                                     |
+| ----------- | ---------- | ------------------------------------------------------------ |
+| 1.0.0       | 2023/02/03 | 实现基本的扫码结果回调以及参数设置                           |
+| 1.0.3       | 2023/02/12 | 增加更多的扫码控制及配置接口。                               |
+| 1.0.4       | 2023/02/27 | 增加扫码服务的暂停和继续                                     |
+| 1.0.6       | 2023/03/09 | 支持版本信息、连续扫码、多条码支持及精确扫码相关接口。       |
+| 1.0.7       | 2023/03/10 | 支持瞄准灯和补光灯控制接口。                                 |
+| 1.0.8       | 2023/03/13 | 修订文档中的sdk版本号.                                       |
+| 1.0.9       | 2023/03/14 | 增加支持授权激活及授权状态查询的API。                        |
+| 1.1.0       | 2023/03/15 | 增加接口用于查询扫码服务的挂起状态。                         |
+| 1.1.2       | 2023/04/03 | 增加接口用于获取最后一张解码图片。                           |
+| 1.1.3       | 2023/04/11 | 增加接口用于设置扫码输出的第二个前缀及后缀参数。             |
+| 1.1.8       | 2024/05/16 | 增加自定义广播、返回条码类型结果的回调、扫码失败提示音、闪光灯亮度、禁用/启用扫码快捷按键、导出/导入配置文件接口。 |
+| 1.1.9       | 2024/08/26 | 增加获取/配置EAN13、Matrix25、UPCA条码属性接口。             |
+| 1.1.10      | 2024/09/24 | 增加获取/配置扫码触发模式接口。                              |
+| 1.1.11      | 2024/10/10 | 增加获取/配置Code39、DATAMATRIX、EAN8条码属性接口。          |
+| 1.1.12      | 2024/10/17 | 增加获取/配置code11、coded49、code93、code128、codeabar条码属性接口。 |
+| 1.1.13      | 2024/10/18 | 增加获取/配置GS1-128、GS1-DATABAR、ITF25、MSI、QRCode、UPCE条码属性接口。 |
+| 1.1.14      | 2024/11/21 | 增加设置扫码提示音接口。                                     |
+| 1.1.15      | 2024/12/10 | 增加Datamatrix码制可以切换和单独控制。                       |
+| 1.1.16      | 2024/12/13 | 增加Datamatrix和QrCode码制最大长度功能来替换最大输出长度功能 |
+| 1.1.17      | 2025/01/23 | 增加获取/配置是否在条码中显示AimID的接口                     |
+| 1.1.18      | 2025/02/26 | 增加设置传输键值状态的接口                                   |
+| 1.3.49.0.13 | 2025/04/17 | 增加获取/设置扫码白名单状态的接口，增加获取和设置扫码白名单的接口 |
 >>>>>>> 8210683 (SDK 1.1.17  Add API to Use AimID barcode type switch interface.)
 
 # 功能使用
@@ -134,6 +136,23 @@
 我们可以通过接口 *getLicenseState* 来查询授权的状态变化。
 
 **Note:** 激活授权需要有良好的网络连接。
+
+
+
+## 重新激活授权
+
+使用如下接口可以清除缓存重新激活授权。
+
+```java
+	XcBarcodeScanner.forceNetWorkActivate();
+```
+
+在调用激活授权后，需要约1~2分钟时间完成激活流程。
+我们可以通过接口 *getLicenseState* 来查询授权的状态变化。
+
+**Note:** 激活授权需要有良好的网络连接。
+
+
 
 ## 开始/结束扫码动作
 
@@ -431,14 +450,14 @@ public class FlashMode {
 
 ```java
     XcBarcodeScanner.setTextSuffix(String prefix);
-    XcBarcodeScanner.setTextSuffix2(String prefix2);
+    XcBarcodeScanner.setTextSuffix1(String prefix2);
 ```
 
 示例代码：
 
 ```java
     XcBarcodeScanner.setTextSuffix(">");  // 设置扫码结果后缀为“>”
-    XcBarcodeScanner.setTextSuffix2(":");  // 设置扫码结果后缀2为“:”
+    XcBarcodeScanner.setTextSuffix1(":");  // 设置扫码结果后缀2为“:”
     XcBarcodeScanner.setTextSuffix("Empty"); // 设置扫码结果后缀为空
 ```
 
@@ -648,6 +667,37 @@ String fileName = "Scanner";   //文件名不能包含类型后缀
 String importPath = Environment.getExternalStorageDirectory().getPath() + "/Scanner.xml";
 XcBarcodeScanner.importSettingsByProfileName(fileName, importPath);
 ```
+
+## 配置管理
+
+导入、导出或者重置扫码配置
+
+```java
+    void loadSettings();//导入设置
+    void saveSettings();//导出设置
+    void resetSettings();//重置设置
+```
+
+## DataMatrix条码配置
+
+可以通过SDK提供的接口对DataMatrix进行设置。
+
+```java
+   void setDataMatrixWithSeparators(boolean withSeparators);//设置显示分隔符，true显示 false 不显示
+   void setDataMatrixMaxOutputLength(int maxLength);//设置最大输出长度（0:不限制）
+```
+
+示例代码：
+
+```java
+    
+    XcBarcodeScanner.setDataMatrixWithSeparators(true); //开启DataMatrix的分隔符显示
+    
+    XcBarcodeScanner.setDataMatrixMaxOutputLength(2); // 设置DataMatrix解码的最大输出长度为2
+   
+```
+
+
 
 ## 扫码失败提示音
 
@@ -1117,44 +1167,103 @@ void setScanVolume(float volume)
 ```
 
 
-## 设置和获取Datamatrix码制当前所应用子类型
 
-可以通过该接口设置Datamatrix码制的当前类型（仅标准码、仅反色码、全部启用）。
+## 获取显示AimID的状态
 
+可以通过该接口获取显示AimID的状态。
+
+```java
+boolean getUseAimidInResult();
 ```
-<string-array name="matrix_mode_array" translatable="false">
-    <item>仅标准码</item>
-    <item>仅反色码</item>
-    <item>全部开启</item>
-</string-array>
 
-<string-array name="matrix_mode_value" translatable="false">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-</string-array>
-    
-// 获取DataMatrix类型的码制
-int getDataMatrixMode();
 
-// 设置DataMatrix类型的码制
-// 支持参数：0：仅标准码、1：仅反色码、2：全部启用
-void setDataMatrixMode(int trye);
+
+## 设置显示AimID的状态
+
+可以通过该接口设置显示AimID的状态。
+
+```java
+void setUseAimidInResult(boolean isEnable);
 ```
 
 示例代码：
 
 ```
-int matrixMode = XcBarcodeScanner.getDataMatrixMode();
-
-XcBarcodeScanner.setDataMatrixMode(position);
+//不显示AimID的结果到扫码结果中
+if(getUseAimidInResult()){
+	XcBarcodeScanner.setUseAimidInResult(false);
+}
 ```
 
+## 设置传输键值的状态
 
-## 设置将AimID作为条码名称打开或关闭
-
-支持参数：true / false
+可以通过该接口设置传输键值的状态。
 
 ```java
-void setUseAimidInResult(boolean isEnable);
+ void setTransmitKeyEvent(boolean isEnable);
 ```
+
+示例代码:
+
+```
+//关闭传输键值功能
+XcBarcodeScanner.setTransmitKeyEvent(false);
+
+```
+
+## 
+
+## 获取扫码白名单的状态
+
+可以通过该接口获取扫码白名单的状态。
+
+```java
+boolean isScanWhiteListEnable();
+```
+
+
+
+## 设置扫码白名单的状态
+
+可以通过该接口设置扫码白名单的状态。
+
+```java
+void setScanWhiteListEnable(boolean isEnable);
+```
+
+示例代码：
+
+```
+//关闭扫码白名单
+if(isScanWhiteListEnable()){
+	XcBarcodeScanner.setScanWhiteListEnable(false);
+}
+```
+
+## 获取扫码白名单
+
+可以通过该接口获取扫码白名单。
+
+```java
+String getScanWhiteListPkgs();
+```
+
+## 设置扫码白名单
+
+可以通过该接口设置扫码白名单。
+
+```java
+ void addScanWhiteListPkgs(String whiteList);//添加扫码白名单
+ void delScanWhiteListPkgs(String whiteList);//删除扫码白名单
+```
+
+示例代码：
+
+```
+//添加 "com.android.launcher3"和"com.android.deskclock"到扫码白名单
+XcBarcodeScanner.addScanWhiteListPkgs("com.android.launcher3,com.android.deskclock");
+//从扫码白名单中删除 "com.android.launcher3" 
+XcBarcodeScanner.delScanWhiteListPkgs("com.android.launcher3");
+
+```
+

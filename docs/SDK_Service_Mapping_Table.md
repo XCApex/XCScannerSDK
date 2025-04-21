@@ -6,7 +6,7 @@ For historical reasons, the SDK version need to matched with our scanner service
 The following table shown the mapping table of SDK and Service version.
 
 | SDK version |            Service application version            |
-|:-----------:|:-------------------------------------------------:|
+| :---------: | :-----------------------------------------------: |
 |    1.0.6    |                       1.2.6                       |
 |    1.0.7    |                       1.2.7                       |
 |    1.0.8    |                       1.2.8                       |
@@ -24,5 +24,7 @@ The following table shown the mapping table of SDK and Service version.
 |   1.1.15    | 1.3.40.2.6 or later (Magnit Requirements version) |
 |   1.1.16    |                1.3.48.0.6 or later                |
 |   1.1.17    |                1.3.49.0.2 or later                |
+|   1.1.18    |                    1.3.49.0.8~                    |
+| 1.3.49.0.13 |                   1.3.49.0.13~                    |
 
 **Note: DO NOT USE ANY SDK WITHOUT VERSION LISTED IN THE ABOVE TABLE!!!**

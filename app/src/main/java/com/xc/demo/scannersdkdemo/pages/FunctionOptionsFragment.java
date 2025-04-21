@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -40,11 +41,11 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     private Spinner mSpAimEnable, mSpIllumeEnable, mSpBrightness;
 
-    private Switch mSwLeftScanEnable, mUseAimidInResult;
+    private Switch mSwLeftScanEnable, mUseAimidInResult,mScanWhiteList;
 
     private Spinner mSpPrefixChar, mSpSuffixChar, mSpLetterCase;
-
-    private Button mBtnExport, mBtnImport;
+    private Button mBtnExport, mBtnImport,mBtWhiteListGet,mBtWhiteListAdd,mBtWhiteListDel;
+    private EditText mEtWhiteList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -168,6 +169,10 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             Log.i(TAG, funName + ":: pref_use_aimid_in_result = " + isChecked);
             Log.d("bo.li", funName + ":: pref_use_aimid_in_result = " + isChecked);
             XcBarcodeScanner.setUseAimidInResult(isChecked);
+        }else if (buttonView.getId() == R.id.pref_whitelist){
+            Log.i(TAG, funName + ":: pref_whitelist = " + isChecked);
+            Log.d("syg", funName + ":: pref_whitelist = " + isChecked);
+            XcBarcodeScanner.setScanWhiteListEnable(isChecked);
         }
     }
 
@@ -186,6 +191,17 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             String fileName = "XCScannerSDK";
             String importPath = Environment.getExternalStorageDirectory().getPath() + "/XCScannerSDK.xml";
             XcBarcodeScanner.importSettingsByProfileName(fileName, importPath);
+        }else if(viewId == R.id.button_get_whitelist){
+            String whiteList = XcBarcodeScanner.getScanWhiteListPkgs();
+            mEtWhiteList.setText(whiteList);
+        }else if(viewId == R.id.button_add_whitelist){
+            String whiteList = mEtWhiteList.getText().toString();
+            XcBarcodeScanner.addScanWhiteListPkgs(whiteList);
+            mEtWhiteList.setText("");
+        }else if(viewId == R.id.button_del_whitelist){
+            String whiteList = mEtWhiteList.getText().toString();
+            XcBarcodeScanner.delScanWhiteListPkgs(whiteList);
+            mEtWhiteList.setText("");
         }
     }
 
@@ -292,6 +308,19 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         mUseAimidInResult = view.findViewById(R.id.pref_use_aimid_in_result);
         mUseAimidInResult.setOnCheckedChangeListener(this);
         mUseAimidInResult.setChecked(XcBarcodeScanner.getUseAimidInResult());
+
+        //syg whitelist
+
+        mScanWhiteList = view.findViewById(R.id.pref_whitelist);
+        mScanWhiteList.setOnCheckedChangeListener(this);
+        mScanWhiteList.setChecked(XcBarcodeScanner.isScanWhiteListEnable());
+        mEtWhiteList = view.findViewById(R.id.et_whitelist);
+        mBtWhiteListGet = view.findViewById(R.id.button_get_whitelist);
+        mBtWhiteListGet.setOnClickListener(this);
+        mBtWhiteListAdd = view.findViewById(R.id.button_add_whitelist);
+        mBtWhiteListAdd.setOnClickListener(this);
+        mBtWhiteListDel = view.findViewById(R.id.button_del_whitelist);
+        mBtWhiteListDel.setOnClickListener(this);
 
         mSpPrefixChar = view.findViewById(R.id.sp_prefix_char);
         mSpSuffixChar = view.findViewById(R.id.sp_suffix_char);

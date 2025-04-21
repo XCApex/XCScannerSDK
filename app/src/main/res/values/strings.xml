@@ -126,4 +126,10 @@
 
     <string name="pref_setting_debug_title">Debug options</string>
     <string name="setting_use_aimid_in_result">Use AimID barcode type</string>
+    <string name="whitelist_flag">White List</string>
+    <string name="whitelist_open">Open White List</string>
+    <string name="whitelist_close">Close White List</string>
+    <string name="whitelist_add">Add White List</string>
+    <string name="whitelist_del">Del White List</string>
+    <string name="whitelist_get">Get White List</string>
 </resources>
