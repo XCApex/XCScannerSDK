@@ -132,4 +132,35 @@
     <string name="whitelist_add">Add White List</string>
     <string name="whitelist_del">Del White List</string>
     <string name="whitelist_get">Get White List</string>
+
+    <string name="pref_character_modify_title">Character transform options</string>
+    <string name="character_modify_enable">Enable character transform</string>
+    <string name="character_gs_fnc1_0x1d">GS1 FNC1 (0x1D)</string>
+    <string name="pref_character_custom_enable">Custom translation characters are preferred</string>
+    <string name="pref_character_custom">Custom translation characters</string>
+    <string name="pref_character_custom_success">Successful setting</string>
+    <string name="pref_character_custom_failed">Failed to set: The character length is greater than 5</string>
+
+    <string name="text_itf14_transition_ean13">Convert ITF-14 to EAN13</string>
+
+    <string name="text_char_replace">Character Replacement</string>
+    <string name="text_char_replace_enable">Eanble Character Replacement</string>
+    <string name="text_char_replace_settings">Character Replacement Settings</string>
+
+    <string name="text_add_new_rules">Add New Rule</string>
+    <string name="text_editing_rule">Editing Rule</string>
+    <string name="text_content_not_empty">Content cannot be empty</string>
+    <string name="text_only_input_character">Only one character can be entered</string>
+    <string name="text_character_already_add_again">Character to be replaced already exists, cannot add duplicate</string>
+    <string name="text_character_not_the_same">The character to be replaced and the replacement character cannot be the same</string>
+    <string name="text_char_replace_cancel">Cancel</string>
+    <string name="text_char_replace_save">Save</string>
+    <string name="text_char_replace_deleted">Delete</string>
+    <string name="text_char_replace_original">Character to be replaced</string>
+    <string name="text_char_replace_original_input">Please enter the character to be replaced</string>
+    <string name="text_char_replace_substitute">Replacement character</string>
+    <string name="text_char_replace_substitute_input">Please enter the replacement character</string>
+    <string name="text_char_riginal_title">Character to be replaced: </string>
+    <string name="text_char_replace_title">Replacement character: </string>
+
 </resources>

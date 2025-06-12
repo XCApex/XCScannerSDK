@@ -15,10 +15,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.xc.demo.scannersdkdemo.BaseFragment;
 import com.xc.demo.scannersdkdemo.R;
+import com.xc.demo.scannersdkdemo.XCBarcodeTag;
 import com.xc.demo.scannersdkdemo.databinding.FragmentBarcodeOptionsBinding;
 import com.xcheng.scanner.BarcodeType;
-//import com.xcheng.scanner.XCBarcodeTag;
-import com.xc.demo.scannersdkdemo.XCBarcodeTag;
 import com.xcheng.scanner.XcBarcodeScanner;
 
 public class BarcodeOptionsFragment extends BaseFragment {
@@ -264,6 +263,9 @@ public class BarcodeOptionsFragment extends BaseFragment {
             XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_UPCE_ADDENDA_REQUIRED, isChecked ? 1 : 0);
         } else if (buttonView.getId() == R.id.sw_upce_separator_addon) {
             XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_UPCE_ADDENDA_SEPARATOR, isChecked ? 1 : 0);
+        } else if (buttonView.getId() == R.id.pref_convert_itf14_to_ean13) {
+            // 开启/关闭 ITF-25 将ITF-14转换为EAN13
+            XcBarcodeScanner.isConvertItf14ToEan13Enabled(isChecked);
         }
     }
 

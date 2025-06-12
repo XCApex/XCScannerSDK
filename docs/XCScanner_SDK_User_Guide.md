@@ -4,30 +4,31 @@
 # Change log
 
 
-| **Version**            | **Date**   | **Changes**                                                  |
-| ---------------------- | ---------- | ------------------------------------------------------------ |
-| 1.0.0                  | 2023/02/03 | Basic scan result callback and settings.                     |
-| 1.0.3                  | 2023/02/12 | Add API.                                                     |
-| 1.0.4                  | 2023/02/27 | Add suspend and resume API.                                  |
-| 1.0.6                  | 2023/03/09 | Add version info, loopscan, multibarcodes and precise scan about API. |
-| 1.0.7                  | 2023/03/10 | Add API to support config aimer and illume light work mode.  |
-| 1.0.8                  | 2023/03/13 | Fixed SDK version in docs.                                   |
-| 1.0.9                  | 2023/03/14 | Add API to support license acive and license state query.    |
-| 1.1.0                  | 2023/03/15 | Add API to support get scan service status.                  |
-| 1.1.2                  | 2023/04/03 | Add API to support get the latest decode image.              |
-| 1.1.3                  | 2023/04/11 | Add API to support set suffix2 and prefix2.                  |
-| 1.1.8                  | 2024/05/16 | Add API to support set custom BroadcastReceiver, Disable/Enable Scan button, Export/Import configuration file, Configure barcode output failure event notification, Configure flash brightness. |
-| 1.1.9                  | 2024/08/26 | Add API to support set/get properties for the EAN13/Matrix25/UPCA symbology |
-| 1.1.10                 | 2024/09/24 | Add API to support set/get properties for the scan trigger mode. |
-| 1.1.11                 | 2024/10/10 | Add API to support set/get properties for the Code39/DATAMATRIX/EAN8 symbology |
-| 1.1.12                 | 2024/10/17 | Add API to support set/get properties for the code11/coded49/code93/code128/codeabar symbology |
-| 1.1.13                 | 2024/10/18 | Add API to support set/get properties for the GS1-128/GS1-DATABAR/ITF25/MSI/QRCode/UPCE symbology |
-| 1.1.14                 | 2024/11/21 | Add API to set the prompt tone interface for code scanning   |
-| 1.1.15                 | 2024/12/10 | Add API to Datamatrix code system can be switched and controlled separately. |
-| 1.1.16                 | 2024/12/13 | Add Datamatrix and QrCode maximum length function to replace the maximum output length function. |
-| 1.1.17                 | 2025/01/23 | Add API to Use AimID barcode type switch interface.          |
-| 1.1.18                 | 2025/02/26 | Add API to Set Pass Scan Key Value Status                    |
-| 1.3.49.0.13 （1.1.19） | 2025/04/17 | Add API to get/set Scan White list Status, get/config Scan White list |
+| **Version** | **Date**   | **Changes**                                                  |
+| ----------- | ---------- | ------------------------------------------------------------ |
+| 1.0.0       | 2023/02/03 | Basic scan result callback and settings.                     |
+| 1.0.3       | 2023/02/12 | Add API.                                                     |
+| 1.0.4       | 2023/02/27 | Add suspend and resume API.                                  |
+| 1.0.6       | 2023/03/09 | Add version info, loopscan, multibarcodes and precise scan about API. |
+| 1.0.7       | 2023/03/10 | Add API to support config aimer and illume light work mode.  |
+| 1.0.8       | 2023/03/13 | Fixed SDK version in docs.                                   |
+| 1.0.9       | 2023/03/14 | Add API to support license acive and license state query.    |
+| 1.1.0       | 2023/03/15 | Add API to support get scan service status.                  |
+| 1.1.2       | 2023/04/03 | Add API to support get the latest decode image.              |
+| 1.1.3       | 2023/04/11 | Add API to support set suffix2 and prefix2.                  |
+| 1.1.8       | 2024/05/16 | Add API to support set custom BroadcastReceiver, Disable/Enable Scan button, Export/Import configuration file, Configure barcode output failure event notification, Configure flash brightness. |
+| 1.1.9       | 2024/08/26 | Add API to support set/get properties for the EAN13/Matrix25/UPCA symbology |
+| 1.1.10      | 2024/09/24 | Add API to support set/get properties for the scan trigger mode. |
+| 1.1.11      | 2024/10/10 | Add API to support set/get properties for the Code39/DATAMATRIX/EAN8 symbology |
+| 1.1.12      | 2024/10/17 | Add API to support set/get properties for the code11/coded49/code93/code128/codeabar symbology |
+| 1.1.13      | 2024/10/18 | Add API to support set/get properties for the GS1-128/GS1-DATABAR/ITF25/MSI/QRCode/UPCE symbology |
+| 1.1.14      | 2024/11/21 | Add API to set the prompt tone interface for code scanning   |
+| 1.1.15      | 2024/12/10 | Add API to Datamatrix code system can be switched and controlled separately. |
+| 1.1.16      | 2024/12/13 | Add Datamatrix and QrCode maximum length function to replace the maximum output length function. |
+| 1.1.17      | 2025/01/23 | Add API to Use AimID barcode type switch interface.          |
+| 1.1.18      | 2025/02/26 | Add API to Set Pass Scan Key Value Status                    |
+| 1.3.49.0.13 | 2025/04/17 | Add API to get/set Scan White list Status, get/config Scan White list |
+| 1.3.53.1.12 | 2025/06/11 | Add 1. Character translation switch 2. Custom translation character settings 3. ITF-25 enables/disables the conversion from ITF-14 to EAN13 |
 
 # Basic function
 
@@ -1380,3 +1381,55 @@ XcBarcodeScanner.delScanWhiteListPkgs("com.android.launcher3");
 
 ```
 
+
+## Set the translation switch for automatic translation
+The switch for enabling translation support can be set through this interface.
+
+```java
+void needModifyGsCharacter(boolean isEnable);
+```
+
+Sample code:
+```
+XcBarcodeScanner.needModifyGsCharacter(true);  // open
+XcBarcodeScanner.needModifyGsCharacter(false); // close
+```
+
+## Set GS1 FNC1 (0x1D) translation character
+The GS1 FNC1 (0x1D) transliteration character (which can only be a single character) can be set through the interface.
+
+```java
+boolean escapeSingleCharacterSettings(String str);
+```
+
+Sample code:
+```
+XcBarcodeScanner.escapeSingleCharacterSettings("a"); Replace with lowercase "a"
+XcBarcodeScanner.escapeSingleCharacterSettings("A"); Substitute for uppercase "A"
+```
+
+## Set support for custom translation characters
+The interface can be used to set the option to preferentially use custom translation characters.
+
+```java
+void customEscapeCharacters(boolean isEnable);
+```
+
+Sample code:
+```
+XcBarcodeScanner.customEscapeCharacters(true);  // open
+XcBarcodeScanner.customEscapeCharacters(false); // close
+```
+
+## Set GS1 FNC1 (0x1D) translation character customization
+The interface can be configured to support custom GS1 FNC1 (0x1D) characters (up to five characters are supported)
+
+```java
+boolean customConversionCharacters(String str);
+```
+
+Sample code:
+```
+XcBarcodeScanner.customConversionCharacters("abcdef"); Replace with abcde
+XcBarcodeScanner.customConversionCharacters("12345");  Replace with 12345
+```

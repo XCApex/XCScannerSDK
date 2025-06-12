@@ -1,5 +1,6 @@
 package com.xc.demo.scannersdkdemo.pages;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xc.demo.scannersdkdemo.BaseFragment;
 import com.xc.demo.scannersdkdemo.DefaultOptions;
@@ -41,10 +43,10 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     private Spinner mSpAimEnable, mSpIllumeEnable, mSpBrightness;
 
-    private Switch mSwLeftScanEnable, mUseAimidInResult,mScanWhiteList;
+    private Switch mSwLeftScanEnable, mUseAimidInResult, mScanWhiteList;
 
-    private Spinner mSpPrefixChar, mSpSuffixChar, mSpLetterCase;
-    private Button mBtnExport, mBtnImport,mBtWhiteListGet,mBtWhiteListAdd,mBtWhiteListDel;
+    private Spinner mSpPrefixChar, mSpSuffixChar, mSpLetterCase, gsCharEntries;
+    private Button mBtnExport, mBtnImport, mBtWhiteListGet, mBtWhiteListAdd, mBtWhiteListDel, but_pcharacter_custom;
     private EditText mEtWhiteList;
 
     @Override
@@ -91,25 +93,25 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             // set success notification
             XcBarcodeScanner.setSuccessNotification(successNotification[position]);
 
-            Log.d(TAG,"sp_success_notification");
+            Log.d(TAG, "sp_success_notification");
         } else if (parent.getId() == R.id.sp_fail_notification) {
             String[] failNotification = getResources().getStringArray(R.array.scan_notification_values);
             Log.i(TAG, funName + ":: failNotification = " + failNotification[position]);
             // set fail notification
             XcBarcodeScanner.setFailNotification(failNotification[position]);
 
-            Log.d(TAG,"sp_fail_notification" );
+            Log.d(TAG, "sp_fail_notification");
 
         } else if (parent.getId() == R.id.scan_notification_volume) {
             String[] notificationVolume = getResources().getStringArray(R.array.scan_notification_volume_entries);
 //            Log.d(TAG, funName + ":: setScanVolume = " + notificationVolume[position]);
 
             int volume = Integer.parseInt(notificationVolume[position].replace("%", ""));
-            Log.d(TAG,"volume = " + volume / 100f);
+            Log.d(TAG, "volume = " + volume / 100f);
             XcBarcodeScanner.setScanVolume(volume / 100f);
-            Log.d(TAG,"scan_notification_volume" );
+            Log.d(TAG, "scan_notification_volume");
 
-        }else if (parent.getId() == R.id.sp_aim_enable) {
+        } else if (parent.getId() == R.id.sp_aim_enable) {
             int[] aimMode = getResources().getIntArray(R.array.aim_lights_values);
             Log.i(TAG, funName + ":: aimMode = " + aimMode[position]);
             // set aim mode
@@ -139,6 +141,10 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             Log.i(TAG, funName + ":: letterCase = " + letterCase[position]);
             // Convert the scan results to uppercase and lowercase
             XcBarcodeScanner.setTextCase(letterCase[position]);
+        } else if (parent.getId() == R.id.gs_char_entries) {
+            String[] gsCharvalues = getResources().getStringArray(R.array.gs_char_values);
+            Log.d(TAG, funName + ":: gsCharvalues = " + gsCharvalues[position]);
+            XcBarcodeScanner.escapeSingleCharacterSettings(gsCharvalues[position]);
         }
     }
 
@@ -165,14 +171,19 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         } else if (buttonView.getId() == R.id.sw_left_scan_enable) {
             Log.i(TAG, funName + ":: leftScanKeyEnable = " + isChecked);
             XcBarcodeScanner.setLeftScanKeyEnable(isChecked);
-        }else if (buttonView.getId() == R.id.pref_use_aimid_in_result) {
+        } else if (buttonView.getId() == R.id.pref_use_aimid_in_result) {
             Log.i(TAG, funName + ":: pref_use_aimid_in_result = " + isChecked);
-            Log.d("bo.li", funName + ":: pref_use_aimid_in_result = " + isChecked);
             XcBarcodeScanner.setUseAimidInResult(isChecked);
-        }else if (buttonView.getId() == R.id.pref_whitelist){
+        } else if (buttonView.getId() == R.id.pref_whitelist) {
             Log.i(TAG, funName + ":: pref_whitelist = " + isChecked);
             Log.d("syg", funName + ":: pref_whitelist = " + isChecked);
             XcBarcodeScanner.setScanWhiteListEnable(isChecked);
+        } else if (buttonView.getId() == R.id.pref_character_modify_enable) {
+            Log.d(TAG, funName + ":: pref_character_modify_enable = " + isChecked);
+            XcBarcodeScanner.needModifyGsCharacter(isChecked);
+        } else if (buttonView.getId() == R.id.pref_enble_character_custom) {
+            Log.d(TAG, funName + ":: pref_enble_character_custom = " + isChecked);
+            XcBarcodeScanner.customEscapeCharacters(isChecked);
         }
     }
 
@@ -191,14 +202,14 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             String fileName = "XCScannerSDK";
             String importPath = Environment.getExternalStorageDirectory().getPath() + "/XCScannerSDK.xml";
             XcBarcodeScanner.importSettingsByProfileName(fileName, importPath);
-        }else if(viewId == R.id.button_get_whitelist){
+        } else if (viewId == R.id.button_get_whitelist) {
             String whiteList = XcBarcodeScanner.getScanWhiteListPkgs();
             mEtWhiteList.setText(whiteList);
-        }else if(viewId == R.id.button_add_whitelist){
+        } else if (viewId == R.id.button_add_whitelist) {
             String whiteList = mEtWhiteList.getText().toString();
             XcBarcodeScanner.addScanWhiteListPkgs(whiteList);
             mEtWhiteList.setText("");
-        }else if(viewId == R.id.button_del_whitelist){
+        } else if (viewId == R.id.button_del_whitelist) {
             String whiteList = mEtWhiteList.getText().toString();
             XcBarcodeScanner.delScanWhiteListPkgs(whiteList);
             mEtWhiteList.setText("");
@@ -304,7 +315,6 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         mSwLeftScanEnable.setOnCheckedChangeListener(this);
         mSwLeftScanEnable.setChecked(DefaultOptions.DEFAULT_LEFT_SCAN_ENABLE_VAL);
 
-        // bo.li
         mUseAimidInResult = view.findViewById(R.id.pref_use_aimid_in_result);
         mUseAimidInResult.setOnCheckedChangeListener(this);
         mUseAimidInResult.setChecked(XcBarcodeScanner.getUseAimidInResult());
@@ -336,6 +346,32 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         mBtnImport = view.findViewById(R.id.btn_import);
         mBtnExport.setOnClickListener(this);
         mBtnImport.setOnClickListener(this);
+
+        gsCharEntries = view.findViewById(R.id.gs_char_entries);
+        gsCharEntries.setSelection(getSpPositionFromDefVal(R.array.gs_char_values, DefaultOptions.DEFAULT_GS1_FNC1_VAL));
+        gsCharEntries.setOnItemSelectedListener(this);
+
+        but_pcharacter_custom = view.findViewById(R.id.but_pcharacter_custom);
+        but_pcharacter_custom.setOnClickListener(this);
+        but_pcharacter_custom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText et = new EditText(getContext());
+                new AlertDialog.Builder(getContext())
+                        .setView(et)
+                        .setTitle(R.string.pref_character_custom)
+                        .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String input = et.getText().toString();
+                                boolean flag = XcBarcodeScanner.customConversionCharacters(input);
+                                Toast.makeText(getContext(), flag ? R.string.pref_character_custom_success : R.string.pref_character_custom_failed, Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton(R.string.text_char_replace_cancel, null)
+                        .show();
+            }
+        });
+
     }
 
     private int getSpPositionFromDefVal(int id, String defVal) {
