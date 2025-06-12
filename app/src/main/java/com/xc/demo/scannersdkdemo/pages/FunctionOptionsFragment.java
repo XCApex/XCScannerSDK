@@ -43,7 +43,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     private Spinner mSpAimEnable, mSpIllumeEnable, mSpBrightness;
 
-    private Switch mSwLeftScanEnable, mUseAimidInResult, mScanWhiteList;
+    private Switch mSwLeftScanEnable, mUseAimidInResult, mScanWhiteList, mCharacterModifyEnable, mCharacterCustomEnable;
 
     private Spinner mSpPrefixChar, mSpSuffixChar, mSpLetterCase, gsCharEntries;
     private Button mBtnExport, mBtnImport, mBtWhiteListGet, mBtWhiteListAdd, mBtWhiteListDel, but_pcharacter_custom;
@@ -371,6 +371,12 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
                         .show();
             }
         });
+
+        mCharacterModifyEnable = view.findViewById(R.id.pref_character_modify_enable);
+        mCharacterModifyEnable.setOnCheckedChangeListener(this);
+
+        mCharacterCustomEnable = view.findViewById(R.id.pref_enble_character_custom);
+        mCharacterCustomEnable.setOnCheckedChangeListener(this);
 
     }
 
