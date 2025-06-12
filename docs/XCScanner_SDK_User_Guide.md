@@ -5,7 +5,7 @@
 
 
 | **Version** | **Date**   | **Changes**                                                  |
-| ----------- | ---------- | ------------------------------------------------------------ |
+|-------------| ---------- | ------------------------------------------------------------ |
 | 1.0.0       | 2023/02/03 | Basic scan result callback and settings.                     |
 | 1.0.3       | 2023/02/12 | Add API.                                                     |
 | 1.0.4       | 2023/02/27 | Add suspend and resume API.                                  |
@@ -28,7 +28,7 @@
 | 1.1.17      | 2025/01/23 | Add API to Use AimID barcode type switch interface.          |
 | 1.1.18      | 2025/02/26 | Add API to Set Pass Scan Key Value Status                    |
 | 1.3.49.0.13 | 2025/04/17 | Add API to get/set Scan White list Status, get/config Scan White list |
-| 1.3.53.1.12 | 2025/06/11 | Add 1. Character translation switch 2. Custom translation character settings 3. ITF-25 enables/disables the conversion from ITF-14 to EAN13 |
+| 1.3.53.1.13 | 2025/06/11 | Add 1. Character translation switch 2. Custom translation character settings 3. ITF-25 enables/disables the conversion from ITF-14 to EAN13 |
 
 # Basic function
 
