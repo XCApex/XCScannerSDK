@@ -45,4 +45,6 @@ public class DefaultOptions {
     public static final String DEFAULT_SUFFIX_VAL = "Empty";
 
     public static final String DEFAULT_LETTER_CASE_VAL = "NONE_CASE"; // not convert uppercase and lowercase letters
+
+    public static final String DEFAULT_GS1_FNC1_VAL = "Empty"; // not convert uppercase and lowercase letters
 }

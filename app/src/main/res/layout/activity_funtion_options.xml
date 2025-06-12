@@ -349,6 +349,57 @@
                 android:entries="@array/letter_case_entries" />
         </LinearLayout>
 
+
+        <!-- 字符转译选项 -->
+        <!--Character translation options-->
+        <TextView
+            style="@style/OptionTitleStyle"
+            android:text="@string/pref_character_modify_title" />
+
+        <Switch
+            android:id="@+id/pref_character_modify_enable"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/character_modify_enable" />
+
+        <View style="@style/DividerStyle" />
+
+        <TextView
+            style="@style/OptionItemTxtStyle"
+            android:text="@string/character_gs_fnc1_0x1d" />
+        <Spinner
+            android:id="@+id/gs_char_entries"
+            style="@style/CommonSpinnerStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/gs_char_values" />
+
+        <View style="@style/DividerStyle" />
+
+        <Switch
+            android:id="@+id/pref_enble_character_custom"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/pref_character_custom_enable" />
+
+        <View style="@style/DividerStyle" />
+
+        <Button
+            android:id="@+id/but_pcharacter_custom"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/pref_character_custom" />
+
+        <!-- 字符替换 -->
+        <!--Character substitution-->
+<!--        <TextView-->
+<!--            style="@style/OptionTitleStyle"-->
+<!--            android:text="@string/text_char_replace" />-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/pref_char_replace_eanble"-->
+<!--            style="@style/OptionItemSwitchStyle"-->
+<!--            android:text="@string/text_char_replace_enable" />-->
+
+        <View style="@style/DividerStyle" />
+
         <!-- 调试选项 -->
         <!--Debug options-->
         <TextView
@@ -361,15 +412,20 @@
             android:id="@+id/pref_use_aimid_in_result"
             style="@style/OptionItemSwitchStyle"
             android:text="@string/setting_use_aimid_in_result" />
+
+        <View style="@style/DividerStyle" />
+
         <!--白名单 start-->
         <Switch
             android:id="@+id/pref_whitelist"
             style="@style/OptionItemSwitchStyle"
             android:text="@string/whitelist_open" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/text_whitelist"
                 android:layout_width="match_parent"
@@ -377,25 +433,27 @@
                 android:layout_weight="0.8"
                 android:gravity="center"
                 android:text="@string/whitelist_flag" />
+
             <EditText
                 android:id="@+id/et_whitelist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-<!--            <Button-->
-<!--                android:id="@+id/button_whitelist"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="0.24"-->
-<!--                android:text="@string/whitelist_open"-->
-<!--                android:textAllCaps="false" />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/button_whitelist"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_weight="0.24"-->
+            <!--                android:text="@string/whitelist_open"-->
+            <!--                android:textAllCaps="false" />-->
 
             <Button
                 android:id="@+id/button_add_whitelist"
@@ -403,7 +461,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
                 android:text="@string/whitelist_add"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/button_del_whitelist"
                 android:layout_width="match_parent"
@@ -411,6 +470,7 @@
                 android:layout_weight="0.3"
                 android:text="@string/whitelist_del"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/button_get_whitelist"
                 android:layout_width="match_parent"

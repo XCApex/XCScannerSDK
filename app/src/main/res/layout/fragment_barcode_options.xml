@@ -546,6 +546,14 @@
                     android:onEditorAction="@{fragment::onEditorAction}" />
             </LinearLayout>
 
+            <View style="@style/DividerStyle" />
+
+            <Switch
+                android:id="@+id/pref_convert_itf14_to_ean13"
+                style="@style/OptionItemSwitchStyle"
+                android:onCheckedChanged="@{fragment::onCheckedChanged}"
+                android:text="@string/text_itf14_transition_ean13" />
+
             <!--MATRIX25-->
             <TextView
                 style="@style/OptionTitleStyle"

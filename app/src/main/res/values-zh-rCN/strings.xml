@@ -134,4 +134,34 @@
     <string name="whitelist_add">添加白名单</string>
     <string name="whitelist_del">删除白名单</string>
     <string name="whitelist_get">获取白名单</string>
+
+    <string name="pref_character_modify_title">字符转义选项</string>
+    <string name="character_modify_enable">支持转义</string>
+    <string name="character_gs_fnc1_0x1d">GS1 FNC1 (0x1D)</string>
+    <string name="pref_character_custom_enable">优先使用自定义转译字符</string>
+    <string name="pref_character_custom">自定义转译字符</string>
+    <string name="pref_character_custom_success">设置成功</string>
+    <string name="pref_character_custom_failed">设置失败：字符长度大于5</string>
+
+    <string name="text_itf14_transition_ean13">将ITF-14转换为EAN13</string>
+
+    <string name="text_char_replace">字符替换</string>
+    <string name="text_char_replace_enable">开启字符替换</string>
+    <string name="text_char_replace_settings">字符替换设置</string>
+    <string name="text_add_new_rules">添加新规则</string>
+    <string name="text_editing_rule">编辑规则</string>
+    <string name="text_content_not_empty">内容不能为空</string>
+    <string name="text_only_input_character">只能输入一个字符</string>
+    <string name="text_character_already_add_again">被替换的字符已存在，不能重复添加</string>
+    <string name="text_character_not_the_same">被替换的字符和替换后的字符不能相同</string>
+    <string name="text_char_replace_cancel">取消</string>
+    <string name="text_char_replace_save">保存</string>
+    <string name="text_char_replace_deleted">删除</string>
+    <string name="text_char_replace_original">被替换的字符</string>
+    <string name="text_char_replace_original_input">请输入被替换的字符</string>
+    <string name="text_char_replace_substitute">替换后的字符</string>
+    <string name="text_char_replace_substitute_input">请输入替换后的字符</string>
+    <string name="text_char_riginal_title">被替换的字符： </string>
+    <string name="text_char_replace_title">替换后的字符： </string>
+
 </resources>
