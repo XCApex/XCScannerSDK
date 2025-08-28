@@ -31,8 +31,8 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     private static final String TAG = "XCScannerSDK_FunctionOptions";
 
-    private Spinner mSpTimeOut, mSpTriggerMode, mSpDataReceiveMethod, mSpMultiBarcodeNum, mSpViewSize;
-    private Switch mSwExactlyMultiNum;
+    private Spinner mSpScanMode, mSpTimeOut, mSpTriggerMode, mSpDataReceiveMethod, mSpMultiBarcodeNum, mSpViewSize;
+    //private Switch mSwExactlyMultiNum;
 
     private LinearLayout mLyBroadcastAction, mLyBroadcastKey;
     private TextView mTvBroadcastAction, mTvBroadcastKey;
@@ -43,7 +43,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     private Spinner mSpAimEnable, mSpIllumeEnable, mSpBrightness;
 
-    private Switch mSwLeftScanEnable, mUseAimidInResult, mScanWhiteList, mCharacterModifyEnable, mCharacterCustomEnable;
+    private Switch mSwLeftScanEnable, mSwRightScanEnable, mUseAimidInResult, mScanWhiteList, mCharacterModifyEnable, mCharacterCustomEnable;
 
     private Spinner mSpPrefixChar, mSpSuffixChar, mSpLetterCase, gsCharEntries;
     private Button mBtnExport, mBtnImport, mBtWhiteListGet, mBtWhiteListAdd, mBtWhiteListDel, but_pcharacter_custom;
@@ -59,16 +59,24 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String funName = "onItemSelected";
-        if (parent.getId() == R.id.sp_timeout) {
+        if (parent.getId() == R.id.sp_scan_code_mode) {
+            String[] scanMode = getResources().getStringArray(R.array.scan_mode_values);
+            Log.i(TAG, funName + ":: scanMode = " + scanMode[position]);
+            // set Scan Mode
+            XcBarcodeScanner.setScanMode(scanMode[position]);
+        } else if (parent.getId() == R.id.sp_timeout) {
             int[] timeOut = getResources().getIntArray(R.array.scan_timeout_values);
             Log.i(TAG, funName + ":: timeOut = " + timeOut[position]);
             // set scan timeout
-            XcBarcodeScanner.setTimeout(timeOut[position]);
+            //XcBarcodeScanner.setTimeout(timeOut[position]);
+            String[] scanMode = getResources().getStringArray(R.array.scan_mode_values);
+            XcBarcodeScanner.setScanModeTimeout(scanMode[mSpScanMode.getSelectedItemPosition()], timeOut[position] * 1000);
         } else if (parent.getId() == R.id.sp_trigger_mode) {
-            String[] triggerMode = getResources().getStringArray(R.array.scan_trigger_mode_values);
-            Log.i(TAG, funName + ":: triggerMode = " + triggerMode[position]);
+            //String[] triggerMode = getResources().getStringArray(R.array.scan_trigger_mode_values);
+            Log.i(TAG, funName + ":: triggerMode position = " + position);
             // set scan trigger mode
-            XcBarcodeScanner.setScanTriggerMode(triggerMode[position]);
+            String[] scanMode = getResources().getStringArray(R.array.scan_mode_values);
+            XcBarcodeScanner.setScanTriggerMode(scanMode[mSpScanMode.getSelectedItemPosition()], position == 1);
         } else if (parent.getId() == R.id.sp_data_receive_method) {
             String[] dataReceiveMethod = getResources().getStringArray(R.array.data_receive_method_values);
             Log.i(TAG, funName + ":: dataReceiveMethod = " + dataReceiveMethod[position]);
@@ -77,10 +85,10 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         } else if (parent.getId() == R.id.sp_multi_barcode_num) {
             int[] multiBarcodeNum = getResources().getIntArray(R.array.multibarcodes_number_values);
             int num = multiBarcodeNum[position];
-            boolean isExactlyNum = mSwExactlyMultiNum.isChecked();
-            Log.i(TAG, funName + ":: multiBarcodeNum = " + num + " , isExactlyNum = " + isExactlyNum);
+            //boolean isExactlyNum = mSwExactlyMultiNum.isChecked();
+            Log.i(TAG, funName + ":: multiBarcodeNum = " + num);
             // set multi-barcode number and exactness
-            XcBarcodeScanner.setMultiBarcodes(num, isExactlyNum);
+            XcBarcodeScanner.setMultiBarcodes(num);
         } else if (parent.getId() == R.id.sp_view_size) {
             int[] viewSize = getResources().getIntArray(R.array.scan_viewsize_values);
             Log.i(TAG, funName + ":: viewSize = " + viewSize[position]);
@@ -92,7 +100,6 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             Log.i(TAG, funName + ":: successNotification = " + successNotification[position]);
             // set success notification
             XcBarcodeScanner.setSuccessNotification(successNotification[position]);
-
             Log.d(TAG, "sp_success_notification");
         } else if (parent.getId() == R.id.sp_fail_notification) {
             String[] failNotification = getResources().getStringArray(R.array.scan_notification_values);
@@ -155,28 +162,32 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Log.d("bo.li", "isChecked = " + isChecked);
+        Log.d(TAG, "isChecked = " + isChecked);
         String funName = "onCheckedChanged";
-        if (buttonView.getId() == R.id.sw_exactly_multi_num) {
-            int numIndex = mSpMultiBarcodeNum.getSelectedItemPosition();
-            int[] multiBarcodeNum = getResources().getIntArray(R.array.multibarcodes_number_values);
-            int num = multiBarcodeNum[numIndex];
-            Log.i(TAG, funName + ":: multiBarcodeNum = " + num + " , isExactlyNum = " + isChecked);
-            // set multi-barcode number and exactness
-            XcBarcodeScanner.setMultiBarcodes(num, isChecked);
-        } else if (buttonView.getId() == R.id.sw_led_notification) {
+//        if (buttonView.getId() == R.id.sw_exactly_multi_num) {
+//            int numIndex = mSpMultiBarcodeNum.getSelectedItemPosition();
+//            int[] multiBarcodeNum = getResources().getIntArray(R.array.multibarcodes_number_values);
+//            int num = multiBarcodeNum[numIndex];
+//            Log.i(TAG, funName + ":: multiBarcodeNum = " + num + " , isExactlyNum = " + isChecked);
+//            // set multi-barcode number and exactness
+//            XcBarcodeScanner.setMultiBarcodes(num, isChecked);
+//        } else
+        if (buttonView.getId() == R.id.sw_led_notification) {
             Log.i(TAG, funName + ":: ledNotification = " + isChecked);
             // set LED notification
             XcBarcodeScanner.enableSuccessIndicator(isChecked);
         } else if (buttonView.getId() == R.id.sw_left_scan_enable) {
             Log.i(TAG, funName + ":: leftScanKeyEnable = " + isChecked);
             XcBarcodeScanner.setLeftScanKeyEnable(isChecked);
+        } else if (buttonView.getId() == R.id.sw_right_scan_enable) {
+            Log.i(TAG, funName + ":: rightScanKeyEnable = " + isChecked);
+            XcBarcodeScanner.setRightScanKeyEnable(isChecked);
         } else if (buttonView.getId() == R.id.pref_use_aimid_in_result) {
             Log.i(TAG, funName + ":: pref_use_aimid_in_result = " + isChecked);
             XcBarcodeScanner.setUseAimidInResult(isChecked);
         } else if (buttonView.getId() == R.id.pref_whitelist) {
             Log.i(TAG, funName + ":: pref_whitelist = " + isChecked);
-            Log.d("syg", funName + ":: pref_whitelist = " + isChecked);
+            Log.d(TAG, funName + ":: pref_whitelist = " + isChecked);
             XcBarcodeScanner.setScanWhiteListEnable(isChecked);
         } else if (buttonView.getId() == R.id.pref_character_modify_enable) {
             Log.d(TAG, funName + ":: pref_character_modify_enable = " + isChecked);
@@ -257,14 +268,17 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
     }
 
     private void initView(View view) {
+        mSpScanMode = view.findViewById(R.id.sp_scan_code_mode);
+        mSpScanMode.setSelection(getSpPositionFromDefVal(R.array.scan_mode_values, DefaultOptions.DEFAULT_SCAN_MODE_VAL));
+        mSpScanMode.setOnItemSelectedListener(this);
         mSpTimeOut = view.findViewById(R.id.sp_timeout);
+        mSpTimeOut.setSelection(getSpPositionFromDefVal(R.array.scan_timeout_values, DefaultOptions.DEFAULT_SCAN_TIMEOUT_VAL));
+        mSpTimeOut.setOnItemSelectedListener(this);
         mSpTriggerMode = view.findViewById(R.id.sp_trigger_mode);
         mSpDataReceiveMethod = view.findViewById(R.id.sp_data_receive_method);
         mSpMultiBarcodeNum = view.findViewById(R.id.sp_multi_barcode_num);
         mSpViewSize = view.findViewById(R.id.sp_view_size);
-        mSwExactlyMultiNum = view.findViewById(R.id.sw_exactly_multi_num);
-        mSpTimeOut.setSelection(getSpPositionFromDefVal(R.array.scan_timeout_values, DefaultOptions.DEFAULT_SCAN_TIMEOUT_VAL));
-        mSpTimeOut.setOnItemSelectedListener(this);
+        //mSwExactlyMultiNum = view.findViewById(R.id.sw_exactly_multi_num);
         mSpTriggerMode.setSelection(getSpPositionFromDefVal(R.array.scan_trigger_mode_values, DefaultOptions.DEFAULT_TRIGGER_MODE_VAL));
         mSpTriggerMode.setOnItemSelectedListener(this);
         mSpDataReceiveMethod.setSelection(getSpPositionFromDefVal(R.array.data_receive_method_values, DefaultOptions.DEFAULT_DATA_RECEIVE_METHOD_VAL));
@@ -273,8 +287,8 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         mSpMultiBarcodeNum.setOnItemSelectedListener(this);
         mSpViewSize.setSelection(getSpPositionFromDefVal(R.array.scan_viewsize_values, DefaultOptions.DEFAULT_VIEW_SIZE_VAL));
         mSpViewSize.setOnItemSelectedListener(this);
-        mSwExactlyMultiNum.setOnCheckedChangeListener(this);
-        mSwExactlyMultiNum.setChecked(DefaultOptions.DEFAULT_EXACTLY_NUM_VAL);
+        //mSwExactlyMultiNum.setOnCheckedChangeListener(this);
+        //mSwExactlyMultiNum.setChecked(DefaultOptions.DEFAULT_EXACTLY_NUM_VAL);
 
         mLyBroadcastAction = view.findViewById(R.id.ly_broadcast_action);
         mTvBroadcastAction = view.findViewById(R.id.tv_broadcast_action);
@@ -315,12 +329,15 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
         mSwLeftScanEnable.setOnCheckedChangeListener(this);
         mSwLeftScanEnable.setChecked(DefaultOptions.DEFAULT_LEFT_SCAN_ENABLE_VAL);
 
+        mSwRightScanEnable = view.findViewById(R.id.sw_right_scan_enable);
+        mSwRightScanEnable.setOnCheckedChangeListener(this);
+        mSwRightScanEnable.setChecked(DefaultOptions.DEFAULT_RIGHT_SCAN_ENABLE_VAL);
+
         mUseAimidInResult = view.findViewById(R.id.pref_use_aimid_in_result);
         mUseAimidInResult.setOnCheckedChangeListener(this);
         mUseAimidInResult.setChecked(XcBarcodeScanner.getUseAimidInResult());
 
         //syg whitelist
-
         mScanWhiteList = view.findViewById(R.id.pref_whitelist);
         mScanWhiteList.setOnCheckedChangeListener(this);
         mScanWhiteList.setChecked(XcBarcodeScanner.isScanWhiteListEnable());

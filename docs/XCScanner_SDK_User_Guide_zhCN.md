@@ -1319,3 +1319,4 @@ XcBarcodeScanner.customConversionCharacters("abcdef"); 替换为abcde
 XcBarcodeScanner.customConversionCharacters("12345");  替换为12345
 ```
 
+

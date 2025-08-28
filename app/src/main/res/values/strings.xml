@@ -43,6 +43,7 @@
     <string name="function_options">Function options</string>
     <string name="pref_group_control_options_title">Control options</string>
     <string name="text_scan_timeout">Max scan time: </string>
+    <string name="text_scan_code_mode">扫码模式</string>
     <string name="text_scan_trigger_mode">Scan Trigger Mode: </string>
     <string name="text_data_receive_method">Output mode: </string>
     <string name="text_multibarcode_num">MultiBarcodes limit: </string>
@@ -64,6 +65,7 @@
     <string name="strobe_light_brightness">Strobe brightness: </string>
     <string name="pref_scankey_enable_title">Scan key options</string>
     <string name="text_left_scankey">Left scan key</string>
+    <string name="text_right_scankey">Right scan key</string>
     <string name="text_process_result">Result process</string>
     <string name="prefix_char">Prefix char: </string>
     <string name="suffix_char">Suffix char: </string>
@@ -91,11 +93,14 @@
     <string name="code39_base32">Code39 Base32 decode</string>
     <string name="max_length_tip_1_127">Maximum length(1-127)</string>
     <string name="min_length_tip_1_127">Minimum length(1-127)</string>
+    <string name="text_codablock">CODABLOCK-F</string>
+    <string name="text_dotcode">DOTCODE</string>
     <string name="txt_data_matrix">DATA MATRIX</string>
     <string name="text_with_separators">With Separators</string>
     <string name="setting_max_output_length">Max out length (0: no limit)</string>
     <string name="setting_max_length">Max length (0: no limit)</string>
     <string name="txt_ean8">EAN-8</string>
+    <string name="txt_aztec">AZTEC</string>
     <string name="txt_code11">Code11</string>
     <string name="code11_max_length_tip">Maximum length(6-127)</string>
     <string name="code11_min_length_tip">Minimum length(6-127)</string>
@@ -117,6 +122,18 @@
     <string name="text_mqr_enable">MicroQR Enable</string>
     <string name="txt_upce">UPC-E</string>
     <string name="upce_expand">UPCE expansion</string>
+    <string name="text_gridmatrix">Grid Matrix</string>
+    <string name="text_hanxin">HANXIN</string>
+    <string name="text_hk25">HK25</string>
+    <string name="text_iata25">IATA25</string>
+    <string name="text_industrial25">INDUSTRIAL25</string>
+    <string name="text_koreapost">KOREAPOST</string>
+    <string name="text_maxicode">MAXICODE</string>
+    <string name="text_micropdf">MICROPDF</string>
+    <string name="text_nec25">NEC25</string>
+    <string name="text_pdf417">PDF417</string>
+    <string name="text_upsp4st">UPSP4ST</string>
+    <string name="txt_telepen">TELEPEN</string>
 
     <string name="text_scan_notification_volume">Scanning prompts volume</string>
 

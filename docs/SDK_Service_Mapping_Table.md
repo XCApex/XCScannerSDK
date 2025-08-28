@@ -27,5 +27,6 @@ The following table shown the mapping table of SDK and Service version.
 |   1.1.18    |                    1.3.49.0.8~                    |
 | 1.3.49.0.13 |                   1.3.49.0.13~                    |
 | 1.3.53.1.13 |                   1.3.53.1.13~                    |
+| 1.3.56.1.7  |                    1.3.56.1.7~                    |
 
 **Note: DO NOT USE ANY SDK WITHOUT VERSION LISTED IN THE ABOVE TABLE!!!**

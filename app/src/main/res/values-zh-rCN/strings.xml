@@ -44,6 +44,7 @@
     <string name="function_options">功能选项</string>
     <string name="pref_group_control_options_title">控制选项</string>
     <string name="text_scan_timeout">扫码超时时间：</string>
+    <string name="text_scan_code_mode">扫码模式</string>
     <string name="text_scan_trigger_mode">扫码触发模式：</string>
     <string name="text_data_receive_method">条码数据输出模式：</string>
     <string name="text_multibarcode_num">多条码数量：</string>
@@ -65,6 +66,7 @@
     <string name="strobe_light_brightness">闪光灯亮度：</string>
     <string name="pref_scankey_enable_title">扫码键选项</string>
     <string name="text_left_scankey">左扫码键</string>
+    <string name="text_right_scankey">右扫码键</string>
     <string name="text_process_result">结果处理</string>
     <string name="prefix_char">前缀字符：</string>
     <string name="suffix_char">后缀字符：</string>
@@ -92,11 +94,14 @@
     <string name="code39_base32">支持Code32解码</string>
     <string name="max_length_tip_1_127">最大长度（1-127）</string>
     <string name="min_length_tip_1_127">最小长度（1-127）</string>
+    <string name="text_codablock">CODABLOCK-F</string>
+    <string name="text_dotcode">DOTCODE</string>
     <string name="txt_data_matrix">DATA MATRIX</string>
     <string name="text_with_separators">显示分隔符</string>
     <string name="setting_max_output_length">最大输出长度（0：不限制）</string>
     <string name="setting_max_length">最大长度（0：不限制）</string>
     <string name="txt_ean8">EAN-8</string>
+    <string name="txt_aztec">AZTEC</string>
     <string name="txt_code11">Code11</string>
     <string name="code11_max_length_tip">最大长度（6-127）</string>
     <string name="code11_min_length_tip">最小长度（6-127）</string>
@@ -118,6 +123,20 @@
     <string name="text_mqr_enable">MicroQR支持</string>
     <string name="txt_upce">UPC-E</string>
     <string name="upce_expand">UPCE扩充</string>
+    <string name="text_gridmatrix">Grid Matrix</string>
+    <string name="text_hanxin">HANXIN</string>
+
+    <string name="text_hk25">HK25</string>
+    <string name="text_iata25">IATA25</string>
+    <string name="text_industrial25">INDUSTRIAL25</string>
+    <string name="text_koreapost">KOREAPOST</string>
+    <string name="text_maxicode">MAXICODE</string>
+    <string name="text_micropdf">MICROPDF</string>
+    <string name="text_nec25">NEC25</string>
+    <string name="text_pdf417">PDF417</string>
+    <string name="text_upsp4st">UPSP4ST</string>
+    <string name="txt_telepen">TELEPEN</string>
+
 
     <string name="text_scan_notification_volume">扫码提示音量</string>
 

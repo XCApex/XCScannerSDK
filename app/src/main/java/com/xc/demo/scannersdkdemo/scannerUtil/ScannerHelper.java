@@ -3,6 +3,7 @@ package com.xc.demo.scannersdkdemo.scannerUtil;
 import android.os.Handler;
 import android.util.Log;
 
+import com.tools.ScanInfo;
 import com.xc.demo.scannersdkdemo.BaseApplication;
 import com.xcheng.scanner.ScannerSymResult;
 import com.xcheng.scanner.XcBarcodeScanner;
@@ -37,6 +38,11 @@ public class ScannerHelper implements ScannerResultSubject, ScannerSymResult {
     public void onResult(String sym, String content) {
         Log.i(TAG, "[onResult] " + sym + " : " + content);
         notifyObservers(sym, content);
+    }
+
+    @Override
+    public void scanInfo(ScanInfo scanInfo) {
+
     }
 
     @Override

@@ -20,6 +20,24 @@
             style="@style/OptionTitleStyle"
             android:text="@string/pref_group_control_options_title" />
 
+        <!-- 扫码模式 -->
+        <!--Scan code mode-->
+        <LinearLayout style="@style/OptionItemLinearHStyle">
+
+            <TextView
+                style="@style/OptionItemTxtStyle"
+                android:text="@string/text_scan_code_mode" />
+
+            <Spinner
+                android:id="@+id/sp_scan_code_mode"
+                style="@style/CommonSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/scan_mode_entries" />
+        </LinearLayout>
+
+        <View style="@style/DividerStyle" />
+
         <!-- 扫码超时时间 -->
         <!--Max scan time-->
         <LinearLayout style="@style/OptionItemLinearHStyle">
@@ -94,12 +112,12 @@
 
         <!-- 固定的多条码数量 -->
         <!--Fixed number of Barcodes-->
-        <Switch
-            android:id="@+id/sw_exactly_multi_num"
-            style="@style/OptionItemSwitchStyle"
-            android:text="@string/text_multibarcode_exactly_num" />
+<!--        <Switch-->
+<!--            android:id="@+id/sw_exactly_multi_num"-->
+<!--            style="@style/OptionItemSwitchStyle"-->
+<!--            android:text="@string/text_multibarcode_exactly_num" />-->
 
-        <View style="@style/DividerStyle" />
+<!--        <View style="@style/DividerStyle" />-->
 
         <!-- 扫码区域尺寸 -->
         <!--Decode region size-->
@@ -291,6 +309,13 @@
             style="@style/OptionItemSwitchStyle"
             android:text="@string/text_left_scankey" />
 
+        <!-- 右扫码按键 -->
+        <!--right scan button-->
+        <Switch
+            android:id="@+id/sw_right_scan_enable"
+            style="@style/OptionItemSwitchStyle"
+            android:text="@string/text_right_scankey" />
+
         <!-- 结果处理 -->
         <!--Processing scan results-->
         <TextView
@@ -366,6 +391,7 @@
         <TextView
             style="@style/OptionItemTxtStyle"
             android:text="@string/character_gs_fnc1_0x1d" />
+
         <Spinner
             android:id="@+id/gs_char_entries"
             style="@style/CommonSpinnerStyle"
@@ -389,14 +415,14 @@
 
         <!-- 字符替换 -->
         <!--Character substitution-->
-<!--        <TextView-->
-<!--            style="@style/OptionTitleStyle"-->
-<!--            android:text="@string/text_char_replace" />-->
+        <!--        <TextView-->
+        <!--            style="@style/OptionTitleStyle"-->
+        <!--            android:text="@string/text_char_replace" />-->
 
-<!--        <Switch-->
-<!--            android:id="@+id/pref_char_replace_eanble"-->
-<!--            style="@style/OptionItemSwitchStyle"-->
-<!--            android:text="@string/text_char_replace_enable" />-->
+        <!--        <Switch-->
+        <!--            android:id="@+id/pref_char_replace_eanble"-->
+        <!--            style="@style/OptionItemSwitchStyle"-->
+        <!--            android:text="@string/text_char_replace_enable" />-->
 
         <View style="@style/DividerStyle" />
 

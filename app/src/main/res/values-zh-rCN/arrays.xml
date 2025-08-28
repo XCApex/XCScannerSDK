@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="scan_mode_entries">
-        <item>单次扫码模式</item>
-        <item>连续扫码模式</item>
-    </string-array>
+<!--    <string-array name="scan_mode_entries">-->
+<!--        <item>单次扫码模式</item>-->
+<!--        <item>连续扫码模式</item>-->
+<!--    </string-array>-->
 
     <string-array name="scan_timeout_entries">
         <item>1 秒</item>
@@ -257,9 +257,9 @@
     </string-array>
 
     <string-array name="data_matrix_setting_entries" translatable="false">
-        <item>仅标准码</item>
-        <item>仅反色码</item>
-        <item>全部开启</item>
+        <item>常规码</item>
+        <item>反色码</item>
+        <item>自动检测</item>
     </string-array>
 
     <string-array name="data_matrix_setting_value" translatable="false">
@@ -363,6 +363,20 @@
         <item>|</item>
         <item>:</item>
         <item>\?</item>
+    </string-array>
+
+    <!-- Trigger method -->
+    <string-array name="scan_mode_entries">
+        <item>单次扫码</item>
+        <item>自动连续扫码</item>
+        <item>持续去重扫码</item>
+    </string-array>
+
+    <!-- Do not translate. -->
+    <string-array name="scan_mode_values" translatable="false">
+        <item>SINGLE_SCAN</item>
+        <item>REPEAT_SCAN</item>
+        <item>DEDUP_SCAN</item>
     </string-array>
 
 </resources>

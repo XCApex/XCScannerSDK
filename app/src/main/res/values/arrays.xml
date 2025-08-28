@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="scan_mode_entries">
-        <item>Single scan mode</item>
-        <item>Loop Scan mode</item>
-    </string-array>
+<!--    <string-array name="scan_mode_entries">-->
+<!--        <item>Single scan mode</item>-->
+<!--        <item>Loop Scan mode</item>-->
+<!--    </string-array>-->
 
     <string-array name="scan_timeout_entries">
         <item>1 sec</item>
@@ -258,9 +258,9 @@
     </string-array>
 
     <string-array name="data_matrix_setting_entries" translatable="false">
-        <item>Standard Only </item>
-        <item>Inverse Mode</item>
-        <item>Auto Detection</item>
+        <item>Regular</item>
+        <item>Inverse</item>
+        <item>Autodetect</item>
     </string-array>
 
     <string-array name="data_matrix_setting_value" translatable="false">
@@ -364,6 +364,20 @@
         <item>|</item>
         <item>:</item>
         <item>\?</item>
+    </string-array>
+
+    <!-- Trigger method -->
+    <string-array name="scan_mode_entries">
+        <item>Single Scan</item>
+        <item>Repeat Scan</item>
+        <item>Dedup Scan</item>
+    </string-array>
+
+    <!-- Do not translate. -->
+    <string-array name="scan_mode_values" translatable="false">
+        <item>SINGLE_SCAN</item>
+        <item>REPEAT_SCAN</item>
+        <item>DEDUP_SCAN</item>
     </string-array>
 
 </resources>

@@ -4,6 +4,8 @@ package com.xc.demo.scannersdkdemo;
 import com.xc.demo.scannersdkdemo.XCBarcodeTag;
 
 public class DefaultOptions {
+    public static final int DEFAULT_SCAN_MODE_VAL = 0; // scan_mode
+
     public static final int DEFAULT_SCAN_TIMEOUT_VAL = 2; // 2 seconds
 
     public static final String DEFAULT_TRIGGER_MODE_VAL = ScanTriggerMode.STOP_ON_RELEASE;
@@ -39,6 +41,8 @@ public class DefaultOptions {
     public static final int DEFAULT_BRIGHTNESS_VAL = 5; // WEAK_BRIGHTNESS
 
     public static final boolean DEFAULT_LEFT_SCAN_ENABLE_VAL = true;
+
+    public static final boolean DEFAULT_RIGHT_SCAN_ENABLE_VAL = true;
 
     public static final String DEFAULT_PREFIX_VAL = "Empty";
 
