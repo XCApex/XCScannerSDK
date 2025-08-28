@@ -333,6 +333,7 @@ Sample code:
 ## Config scan time limit
 
 Use the following API to config scan time limitation.
+The barcode toolbox 1.3.51 has been discontinued and has been replaced by setScanModeTimeout(String mode, long millisecond);
 
 ```java
     XcBarcodeScanner.setTimeout(int seconds);
@@ -1253,6 +1254,17 @@ Use the following API to set scan trigger mode.
 
 ```java
 void setScanTriggerMode(String val);
+
+// Note: In Barcode Toolbox version 1.3.51 and later, use the new API below with additional scan mode parameter
+// Parameter description:
+// mode
+// Single scan: SINGLE_SCAN
+// Continuous scan: REPEAT_SCAN
+// Deduplication scan: DEDUP_SCAN
+// enable
+// true: Starts scanning when pressed, stops when scan succeeds, times out, or is released
+// false: Stops scanning when scan succeeds or times out
+void setScanTriggerMode(String mode, boolean enable);
 ```
 
 The properties that support queries are defined in the ScanTriggerMode class:
@@ -1428,8 +1440,39 @@ The interface can be configured to support custom GS1 FNC1 (0x1D) characters (up
 boolean customConversionCharacters(String str);
 ```
 
-Sample code:
+## Set Scan Mode
+The scan mode (e.g., single scan, continuous scan) can be configured using the following interface.
+Barcode Toolbox version: Available from version 1.3.51 onwards
+
+```java
+void setScanMode(String mode);
 ```
-XcBarcodeScanner.customConversionCharacters("abcdef"); Replace with abcde
-XcBarcodeScanner.customConversionCharacters("12345");  Replace with 12345
+
+Supported parameters:
+Single scan: SINGLE_SCAN
+Continuous scan: REPEAT_SCAN
+
+```java
+// Set current mode to single scan
+XcBarcodeScanner.setScanMode("SINGLE_SCAN");
+
+// Set current mode to continuous scan
+XcBarcodeScanner.setScanMode("REPEAT_SCAN");
+```
+
+## Set Scan Timeout Duration
+
+The scan timeout duration can be configured using the following interface
+Barcode Toolbox version: Available from version 1.3.51 onwards
+
+```java
+void setScanModeTimeout(String mode, long millisecond);
+```
+
+```java
+// Example: Set scan timeout to 3000 milliseconds for single scan mode
+XcBarcodeScanner.setScanModeTimeout("SINGLE_SCAN", 3000);
+
+// Example: Set scan timeout to 5000 milliseconds for continuous scan mode
+XcBarcodeScanner.setScanModeTimeout("REPEAT_SCAN", 5000);
 ```

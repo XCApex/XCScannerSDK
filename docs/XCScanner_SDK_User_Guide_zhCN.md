@@ -333,6 +333,7 @@
 ## 扫码超时设置
 
 可以通过SDK提供的接口设置扫码超时时间。
+条码工具箱1.3.51后废弃，替换为setScanModeTimeout(String mode, long millisecond);
 
 ```java
     XcBarcodeScanner.setTimeout(int seconds);
@@ -1139,6 +1140,17 @@ String defMode = XcBarcodeScanner.getScanTriggerMode();
 
 ```java
 void setScanTriggerMode(String val);
+
+// 注：在条码工具箱1.3.51后要使用下面新的api，多了扫码模式的参数
+// 参数说明：
+// mode
+// 单次扫码：SINGLE_SCAN
+// 连续扫码：REPEAT_SCAN
+// 去重扫码：DEDUP_SCAN
+// enable
+// true：代表按下开始扫码，扫码成功，超时或放开都会停止
+// fasle：扫码成功或超时会停止扫码
+void setScanTriggerMode(String mode, boolean enable);
 ```
 
 支持配置的属性定义在ScanTriggerMode类中：
@@ -1319,4 +1331,40 @@ XcBarcodeScanner.customConversionCharacters("abcdef"); 替换为abcde
 XcBarcodeScanner.customConversionCharacters("12345");  替换为12345
 ```
 
+## 设置扫码模式
 
+可以通过以下接口设置扫码模式，例如单次扫码、连续扫码。
+条码工具箱版本：1.3.51之后使用
+
+```java
+void setScanMode(String mode);
+```
+
+支持参数：
+单次扫码：SINGLE_SCAN
+连续扫码：REPEAT_SCAN
+
+```java
+// 设置当前模式为单次扫码
+XcBarcodeScanner.setScanMode("SINGLE_SCAN");
+
+// 设置当前模式为连续扫码
+XcBarcodeScanner.setScanMode("REPEAT_SCAN");
+```
+
+## 设置扫码超时时间
+
+可以通过以下接口设置扫码超时时间
+条码工具箱版本：1.3.51之后使用
+
+```java
+void setScanModeTimeout(String mode, long millisecond);
+```
+
+```java
+// 例如当前为单次扫码模式，设置扫码超时时间为3000毫秒。
+XcBarcodeScanner.setScanModeTimeout("SINGLE_SCAN", 3000);
+
+// 例如当前为连续扫码模式，设置扫码超时时间为5000毫秒。
+XcBarcodeScanner.setScanModeTimeout("REPEAT_SCAN", 5000);
+```
