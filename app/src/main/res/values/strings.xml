@@ -112,7 +112,7 @@
     <string name="txt_codabar">Codabar</string>
     <string name="min_length_tip_4_127">Minimum length(4-127)</string>
     <string name="txt_gs1_128">GS1-128</string>
-    <string name="txt_gs1_databar">GS1 DATABAR</string>
+    <string name="txt_gs1_databar">GS1 DataBar Omnidirectional (formerly GS1 DataBar-14)</string>
     <string name="text_gs1_expanded">GS1 DataBar Expanded</string>
     <string name="text_gs1_limited">GS1 DataBar Limited</string>
     <string name="txt_itf25">ITF25</string>

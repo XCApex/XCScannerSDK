@@ -98,12 +98,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         super.onScannerConnectedComplete();
         // When the SDK version does not match the service version,
         // it is recommended to immediately terminate subsequent interface calls
-        if (!ScannerHelper.getInstance().checkSdkVersionMatches()) {
-            Log.e(TAG, "SDK version does not match the service version." +
-                    "Continuing to use may pose a risk of crashing.");
-            AlertDialogUtils.showSimpleDialog(MainActivity.this, getResources().getString(R.string.version_match)
-                    , getResources().getString(R.string.version_match_error), "OK", null);
-        }
+//        if (!ScannerHelper.getInstance().checkSdkVersionMatches()) {
+//            Log.e(TAG, "SDK version does not match the service version." +
+//                    "Continuing to use may pose a risk of crashing.");
+//            AlertDialogUtils.showSimpleDialog(MainActivity.this, getResources().getString(R.string.version_match)
+//                    , getResources().getString(R.string.version_match_error), "OK", null);
+//        }
 
         // Attach the observer to receive the result of the scanning
         ScannerHelper.getInstance().attach(this);
