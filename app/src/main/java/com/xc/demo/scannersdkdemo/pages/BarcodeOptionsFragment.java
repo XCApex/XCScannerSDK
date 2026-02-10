@@ -483,7 +483,8 @@ public class BarcodeOptionsFragment extends BaseFragment {
                     XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_DATAMATRIX_OUTPUT_MAX_LENGTH, val.isEmpty() ? 0 : Integer.parseInt(val));
                     break;*/
                 case R.id.et_max_length:
-                    XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_DATAMATRIX_MAX_LENGTH, val.isEmpty() ? 3116 : Integer.parseInt(val));
+                    //XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_DATAMATRIX_MAX_LENGTH, val.isEmpty() ? 3116 : Integer.parseInt(val));
+                    XcBarcodeScanner.setDataMatrixMaxOutputLength(Integer.parseInt(val));
                     break;
                 case R.id.et_codabar_min_length:
                     XcBarcodeScanner.setDecoderTag(XCBarcodeTag.TAG_CODABAR_MIN_LENGTH, val.isEmpty() ? 4 : Integer.parseInt(val));

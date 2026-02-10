@@ -271,9 +271,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.sp_scan_mode) {
-            onScanModeChanged(position == 1);
-
+            //onScanModeChanged(position == 1);
             Log.d(TAG,"position = " + position);
+
+            String[] scanMode = getResources().getStringArray(R.array.scan_mode_values);
+            Log.i(TAG, "scanMode = " + scanMode[position]);
+            // set Scan Mode
+            XcBarcodeScanner.setScanMode(scanMode[position]);
         }
     }
 

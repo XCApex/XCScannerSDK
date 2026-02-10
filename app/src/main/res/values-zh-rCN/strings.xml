@@ -142,7 +142,7 @@
 
     <string name="text_datamatrix_scan_type">码制类型</string>
 
-    <string name="max_length_tip_1_3116">最大长度（0-3116）</string>
+    <string name="max_length_tip_1_3116">最大长度限制（0：不限制）</string>
     <string name="max_length_tip_0_7089">最大长度（0-7089）</string>
 
     <string name="pref_setting_debug_title">调试选项</string>

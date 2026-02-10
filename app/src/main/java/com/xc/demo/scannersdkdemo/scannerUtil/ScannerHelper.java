@@ -41,11 +41,6 @@ public class ScannerHelper implements ScannerResultSubject, ScannerSymResult {
     }
 
     @Override
-    public void scanInfo(ScanInfo scanInfo) {
-
-    }
-
-    @Override
     public void attach(ScannerResultObserver observer) {
         if (observer == null)
             throw new NullPointerException("Observer cannot be null");

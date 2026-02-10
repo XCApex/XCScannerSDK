@@ -68,15 +68,15 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             int[] timeOut = getResources().getIntArray(R.array.scan_timeout_values);
             Log.i(TAG, funName + ":: timeOut = " + timeOut[position]);
             // set scan timeout
-            //XcBarcodeScanner.setTimeout(timeOut[position]);
+            XcBarcodeScanner.setTimeout(timeOut[position]);
             String[] scanMode = getResources().getStringArray(R.array.scan_mode_values);
-            XcBarcodeScanner.setScanModeTimeout(scanMode[mSpScanMode.getSelectedItemPosition()], timeOut[position] * 1000);
+            //XcBarcodeScanner.setScanModeTimeout(scanMode[mSpScanMode.getSelectedItemPosition()], timeOut[position] * 1000);
         } else if (parent.getId() == R.id.sp_trigger_mode) {
-            //String[] triggerMode = getResources().getStringArray(R.array.scan_trigger_mode_values);
+            String[] triggerMode = getResources().getStringArray(R.array.scan_trigger_mode_values);
             Log.i(TAG, funName + ":: triggerMode position = " + position);
             // set scan trigger mode
-            String[] scanMode = getResources().getStringArray(R.array.scan_mode_values);
-            XcBarcodeScanner.setScanTriggerMode(scanMode[mSpScanMode.getSelectedItemPosition()], position == 1);
+            //String[] scanMode = getResources().getStringArray(R.array.scan_mode_values);
+            XcBarcodeScanner.setScanTriggerMode(triggerMode[position]);
         } else if (parent.getId() == R.id.sp_data_receive_method) {
             String[] dataReceiveMethod = getResources().getStringArray(R.array.data_receive_method_values);
             Log.i(TAG, funName + ":: dataReceiveMethod = " + dataReceiveMethod[position]);
@@ -88,7 +88,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             //boolean isExactlyNum = mSwExactlyMultiNum.isChecked();
             Log.i(TAG, funName + ":: multiBarcodeNum = " + num);
             // set multi-barcode number and exactness
-            XcBarcodeScanner.setMultiBarcodes(num);
+            //XcBarcodeScanner.setMultiBarcodes(num);
         } else if (parent.getId() == R.id.sp_view_size) {
             int[] viewSize = getResources().getIntArray(R.array.scan_viewsize_values);
             Log.i(TAG, funName + ":: viewSize = " + viewSize[position]);
@@ -211,7 +211,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             XcBarcodeScanner.exportSettings(exportPath);
         } else if (viewId == R.id.btn_import) {
             String fileName = "XCScannerSDK";
-            String importPath = Environment.getExternalStorageDirectory().getPath() + "/XCScannerSDK.xml";
+            String importPath = Environment.getExternalStorageDirectory().getPath() + "/com.xcheng.scannere3_preferences.xml";
             XcBarcodeScanner.importSettingsByProfileName(fileName, importPath);
         } else if (viewId == R.id.button_get_whitelist) {
             String whiteList = XcBarcodeScanner.getScanWhiteListPkgs();
