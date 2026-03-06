@@ -88,7 +88,7 @@ public class FunctionOptionsFragment extends BaseFragment implements View.OnClic
             //boolean isExactlyNum = mSwExactlyMultiNum.isChecked();
             Log.i(TAG, funName + ":: multiBarcodeNum = " + num);
             // set multi-barcode number and exactness
-            //XcBarcodeScanner.setMultiBarcodes(num);
+            XcBarcodeScanner.setMultiBarcodes(num,false);
         } else if (parent.getId() == R.id.sp_view_size) {
             int[] viewSize = getResources().getIntArray(R.array.scan_viewsize_values);
             Log.i(TAG, funName + ":: viewSize = " + viewSize[position]);
